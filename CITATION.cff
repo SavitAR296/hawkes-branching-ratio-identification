@@ -10,7 +10,8 @@ authors:
 version: 1.0.0-submission
 date-released: 2026-09-16
 license: MIT
-repository-code: "https://github.com/[username]/hawkes-branching-ratio-identification"
+doi: 10.5281/zenodo.22774224
+repository-code: "https://github.com/SavitAR296/hawkes-branching-ratio-identification"
 preferred-citation:
   type: article
   title: "What Hawkes branching ratios identify in high-frequency markets: specification uncertainty and critical slowing down in activity"

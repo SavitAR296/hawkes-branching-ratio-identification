@@ -8,6 +8,8 @@ Boyan Xing — Department of Mathematical Sciences, Faculty of Science and Techn
 
 Submitted to *Chaos, Solitons & Fractals*.
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22774223.svg)](https://doi.org/10.5281/zenodo.22774223)
+
 ## What this repository contains
 
 - `src/` — Hawkes likelihoods, sum-of-exponentials (SoE) model and supporting estimators.
