@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this code or the archived results, please cite the manuscript below."
+title: "What Hawkes branching ratios identify in high-frequency markets: specification uncertainty and critical slowing down in activity"
+type: software
+authors:
+  - family-names: Xing
+    given-names: Boyan
+    affiliation: "Department of Mathematical Sciences, Faculty of Science and Technology, Beijing Normal-Hong Kong Baptist University"
+    email: t330025089@mail.bnbu.edu.cn
+version: 1.0.0-submission
+date-released: 2026-09-16
+license: MIT
+repository-code: "https://github.com/[username]/hawkes-branching-ratio-identification"
+preferred-citation:
+  type: article
+  title: "What Hawkes branching ratios identify in high-frequency markets: specification uncertainty and critical slowing down in activity"
+  authors:
+    - family-names: Xing
+      given-names: Boyan
+  journal: "Chaos, Solitons & Fractals"
+  status: "submitted for publication"
+  year: 2026
