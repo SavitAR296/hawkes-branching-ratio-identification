@@ -5,15 +5,8 @@
 - Source: the public Euro-Bund futures tick dataset distributed with the research workspace of Bacry, Jaisson and Muzy (X-DataInitiative/tick-datasets; see Bacry, Jaisson, Muzy, *Quantitative Finance* 16(8), 2016, 1179–1201).
 - Coverage: 20 trading sessions in April 2014, 859,467 events with microsecond timestamps (pooled up/down mid-price changes and buyer/seller-initiated trades).
 
-## Redistribution check before making the repository public
+## Licence and redistribution (resolved)
 
-Third-party market data are not owned by the author. Before making this repository public:
+The snapshot is the file `hawkes/bund/bund.npz` of X-DataInitiative/tick-datasets, released under the BSD 3-Clause License (copyright 2016, X-DataInitiative). Redistribution in source or binary form is permitted provided the copyright notice, the list of conditions and the disclaimer are retained; they are included verbatim in `data/LICENSE_tick-datasets.txt`. The archived file is byte-identical to the upstream file (SHA-256 `fa1d4679fff7f6e2ee7819cbc461df14056bf1786ad0c98cf9e9019feff4bd8c`).
 
-1. Re-read the licence/terms of use attached to the original tick-datasets release and confirm whether redistribution of the raw snapshot is permitted.
-2. If redistribution is **not** permitted, replace `data/bund.npz` in the public repository with:
-   - a `data/README.md` giving the exact source URL, download steps and checksum of the required snapshot;
-   - a small loader script that verifies the downloaded file against the recorded checksum;
-   - keep all frozen **derived** outputs in `tables/` and `tables_csf/` (processed results, not the raw database), which is what the manuscript tables and figures consume.
-3. The journal submission package may still contain the snapshot as a confidential reproducibility archive for reviewers; that is separate from public redistribution.
-
-Do not push data whose licence forbids redistribution to a public repository.
+The per-day event counts in the upstream description page (7,009 / 6,998 / 257,678 / 261,424) differ from the counts in the distributed file (means 5,965 / 5,967 / 14,403 / 16,638 for up / down / buy / sell); the analysis uses the file, and the per-session counts are listed in Appendix A of the revised manuscript.

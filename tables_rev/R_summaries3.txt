@@ -1,0 +1,10 @@
+P Exp: reps/session 60; obs KS 0.112 vs null97.5 0.0086 (outside 1.00); obs CvM 54.5 vs 0.119 (outside 1.00); obs ACF1 0.030 vs [-0.0162,0.0164] (outside 0.60); ACF10 band [-0.0168,0.0170]; all-in fraction 0.00
+     within-model SE(n) median 0.0069 (max 0.0081); bias of refitted n -0.0004; n_fit 0.577; other kernel on this truth: n 0.583, KS 0.059, CvM 11.7, ACF1 -0.002, ACF10 -0.003
+P SoE: reps/session 60; obs KS 0.133 vs null97.5 0.2613 (outside 0.10); obs CvM 48.6 vs 235.853 (outside 0.00); obs ACF1 -0.154 vs [-0.0185,0.0168] (outside 1.00); ACF10 band [-0.0180,0.0160]; all-in fraction 0.00
+     within-model SE(n) median 0.0098 (max 0.0123); bias of refitted n -0.0015; n_fit 0.936; other kernel on this truth: n 0.599, KS 0.088, CvM 30.7, ACF1 0.148, ACF10 0.058
+Tr Exp: reps/session 60; obs KS 0.190 vs null97.5 0.0053 (outside 1.00); obs CvM 240.7 vs 0.122 (outside 1.00); obs ACF1 0.201 vs [-0.0104,0.0102] (outside 1.00); ACF10 band [-0.0093,0.0105]; all-in fraction 0.00
+     within-model SE(n) median 0.0040 (max 0.0058); bias of refitted n -0.0000; n_fit 0.478; other kernel on this truth: n 0.490, KS 0.023, CvM 3.6, ACF1 0.001, ACF10 -0.000
+Tr SoE: reps/session 60; obs KS 0.038 vs null97.5 0.0054 (outside 0.95); obs CvM 10.3 vs 0.114 (outside 0.95); obs ACF1 0.114 vs [-0.0104,0.0101] (outside 1.00); ACF10 band [-0.0106,0.0111]; all-in fraction 0.00
+     within-model SE(n) median 0.0076 (max 0.0174); bias of refitted n -0.0016; n_fit 0.950; other kernel on this truth: n 0.306, KS 0.189, CvM 369.8, ACF1 0.190, ACF10 0.087
+P: exponential fitted to SoE-simulated data (pseudo-true at empirical SoE) median 0.599 vs observed exponential 0.577; per-session corr 0.98; median paired diff +0.022
+Tr: exponential fitted to SoE-simulated data (pseudo-true at empirical SoE) median 0.306 vs observed exponential 0.478; per-session corr 0.45; median paired diff -0.091

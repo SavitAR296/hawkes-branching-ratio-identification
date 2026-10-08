@@ -1,0 +1,43 @@
+== Table 1 with session-bootstrap 95% CI of the median (20 sessions) ==
+Mid-price: Exp const 0.577 [0.566, 0.595] | SoE const 0.936 [0.926, 0.947] | Exp flex 0.577 [0.565, 0.594] | SoE flex 0.870 [0.848, 0.889]
+   paired dn SoE-Exp const 0.363 [0.340, 0.374] ; SoE-Exp flex 0.292 [0.281, 0.296] ; SoE const-flex 0.066 [0.057, 0.072] ; Exp const-flex 0.001 [0.001, 0.001]
+   Laplace SD median 0.0071; exp beta median 1676; slowest SoE relaxation time median 267 s; mean kernel time 11.8 s
+Trades: Exp const 0.478 [0.332, 0.648] | SoE const 0.950 [0.943, 0.962] | Exp flex 0.412 [0.319, 0.522] | SoE flex 0.859 [0.844, 0.865]
+   paired dn SoE-Exp const 0.477 [0.308, 0.612] ; SoE-Exp flex 0.426 [0.349, 0.529] ; SoE const-flex 0.094 [0.081, 0.116] ; Exp const-flex 0.027 [0.002, 0.065]
+   Laplace SD median 0.0046; exp beta median 64; slowest SoE relaxation time median 522 s; mean kernel time 21.3 s
+== Decomposition (full session, one dimension changed at a time; paired per session, median [95% CI]) ==
+Mid-price:
+   kernel Exp->SoE (const bg)        0.363 [0.340, 0.374]
+   background const->spline  Exp     -0.001 [-0.001, -0.001]   SoE -0.066 [-0.072, -0.057]
+   timestamp raw->merge_0.001s  Exp -0.098 [-0.127, -0.087]   SoE -0.046 [-0.056, -0.040]
+   timestamp raw->merge_0.01s   Exp -0.068 [-0.093, -0.043]   SoE -0.067 [-0.081, -0.058]
+   timestamp raw->merge_0.1s    Exp -0.008 [-0.030, 0.024]   SoE -0.082 [-0.096, -0.066]
+   window full->1h     (median of windows) Exp 0.001 [-0.005, 0.010]   SoE -0.064 [-0.076, -0.048]
+   window full->30min  (median of windows) Exp 0.000 [-0.005, 0.011]   SoE -0.079 [-0.093, -0.068]
+   window full->10min  (median of windows) Exp 0.008 [-0.000, 0.014]   SoE -0.095 [-0.108, -0.088]
+Trades:
+   kernel Exp->SoE (const bg)        0.477 [0.308, 0.612]
+   background const->spline  Exp     -0.027 [-0.065, -0.002]   SoE -0.094 [-0.116, -0.081]
+   timestamp raw->merge_0.001s  Exp 0.100 [0.058, 0.226]   SoE -0.011 [-0.013, -0.009]
+   timestamp raw->merge_0.01s   Exp 0.144 [0.089, 0.292]   SoE -0.023 [-0.024, -0.019]
+   timestamp raw->merge_0.1s    Exp 0.288 [0.147, 0.442]   SoE -0.028 [-0.034, -0.015]
+   window full->1h     (median of windows) Exp -0.067 [-0.162, 0.008]   SoE -0.102 [-0.116, -0.089]
+   window full->30min  (median of windows) Exp -0.085 [-0.181, 0.017]   SoE -0.135 [-0.151, -0.111]
+   window full->10min  (median of windows) Exp -0.076 [-0.198, 0.043]   SoE -0.189 [-0.199, -0.178]
+== Aligned 10-min trajectories (R2-8): per-session correlation Exp vs SoE across windows; sign agreement of consecutive changes ==
+Mid-price: Pearson 0.349 [0.272, 0.391], Spearman 0.316 [0.231, 0.362], sign agreement of changes 0.620 [0.571, 0.656] (0.5 = chance); SoE windows with n>=1: 17 of 2169
+Trades: Pearson 0.322 [0.296, 0.406], Spearman 0.296 [0.215, 0.351], sign agreement of changes 0.613 [0.575, 0.639] (0.5 = chance); SoE windows with n>=1: 49 of 2353
+== H3prime critical-slowing test: 1-h windows, 10-s bins, lags 1-6 (means over 260 windows per stream) ==
+Mid-price: empirical [0.166, 0.09, 0.063, 0.056, 0.051, 0.043]
+   SoE-implied [0.222, 0.131, 0.094, 0.074, 0.062, 0.054]  Exp-implied [0.0006, 0.0, 0.0, 0.0, 0.0, 0.0]
+   slowest SoE relaxation time (1-h fits) median 134 s; implied exp(-gamma*10s) median 0.928; lag-1 paired diff SoE-emp 0.064 [0.050, 0.074]
+   signed (up-down) counts empirical [-0.079, -0.014, -0.002, -0.013, -0.009, -0.009]
+Trades: empirical [0.29, 0.178, 0.14, 0.118, 0.105, 0.099]
+   SoE-implied [0.275, 0.172, 0.134, 0.111, 0.098, 0.089]  Exp-implied [0.0066, 0.0, 0.0, 0.0, 0.0, 0.0]
+   slowest SoE relaxation time (1-h fits) median 167 s; implied exp(-gamma*10s) median 0.942; lag-1 paired diff SoE-emp -0.013 [-0.029, 0.003]
+== Deseasonalised 10-s count autocorrelation (counts divided by the 20-session mean 30-min intraday profile) ==
+Mid-price: raw [0.163, 0.088, 0.063, 0.054, 0.051, 0.042]  deseasonalised [0.159, 0.084, 0.058, 0.051, 0.048, 0.038]
+Trades: raw [0.277, 0.17, 0.136, 0.114, 0.101, 0.095]  deseasonalised [0.267, 0.161, 0.126, 0.105, 0.092, 0.086]
+== Hardiman-Bouchaud moment estimator on raw vs deseasonalised full-session counts ==
+Mid-price: W=1: raw 0.671 des 0.706 | W=5: raw 0.734 des 0.746 | W=10: raw 0.756 des 0.765 | W=30: raw 0.792 des 0.800 | W=60: raw 0.821 des 0.818 | W=300: raw 0.886 des 0.867 | W=600: raw 0.911 des 0.884
+Trades: W=1: raw 0.635 des 0.677 | W=5: raw 0.738 des 0.742 | W=10: raw 0.782 des 0.776 | W=30: raw 0.840 des 0.827 | W=60: raw 0.872 des 0.855 | W=300: raw 0.923 des 0.904 | W=600: raw 0.941 des 0.919

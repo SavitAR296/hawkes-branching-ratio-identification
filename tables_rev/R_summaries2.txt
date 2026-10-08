@@ -1,0 +1,124 @@
+== TIMESTAMP full session (median over sessions) ==
+P raw         retained 1.000  exp 0.577  soe 0.936  beta_exp 1676.1
+P merge_1ms   retained 0.519  exp 0.469  soe 0.891  beta_exp 18.2
+P merge_10ms  retained 0.416  exp 0.508  soe 0.870  beta_exp 2.3
+P merge_0.1s  retained 0.328  exp 0.567  soe 0.854  beta_exp 0.4
+P randomise_1s draws/session 100: exp median 0.791 (draw range med 0.790-0.792, width 0.002) soe 0.939 (0.938-0.939) beta_exp 3.5; paired exp-raw 0.210 [0.201, 0.223] soe-raw 0.002 [0.002, 0.003]
+Tr raw         retained 1.000  exp 0.478  soe 0.950  beta_exp 63.6
+Tr merge_1ms   retained 0.808  exp 0.633  soe 0.938  beta_exp 3.5
+Tr merge_10ms  retained 0.701  exp 0.680  soe 0.926  beta_exp 1.4
+Tr merge_0.1s  retained 0.558  exp 0.771  soe 0.923  beta_exp 0.3
+Tr randomise_1s draws/session 100: exp median 0.744 (draw range med 0.743-0.746, width 0.003) soe 0.947 (0.946-0.947) beta_exp 2.4; paired exp-raw 0.259 [0.132, 0.384] soe-raw -0.003 [-0.004, -0.002]
+== TIMESTAMP 10-min windows, 30-min buffer (median over windows; paired diff vs raw on the same windows) ==
+P raw          nwin  1383 exp 0.587 soe 0.839 | dexp +0.000 dsoe +0.000 | soe>=1 15
+P merge_1ms    nwin  1206 exp 0.441 soe 0.700 | dexp -0.146 dsoe -0.138 | soe>=1 14
+P merge_10ms   nwin  1107 exp 0.446 soe 0.626 | dexp -0.140 dsoe -0.211 | soe>=1 12
+P merge_0.1s   nwin   994 exp 0.439 soe 0.533 | dexp -0.143 dsoe -0.297 | soe>=1 11
+P randomise_1s nwin  1383 exp 0.757 soe 0.831 | dexp +0.162 dsoe -0.003 | soe>=1 15
+Tr raw          nwin  1553 exp 0.392 soe 0.761 | dexp +0.000 dsoe +0.000 | soe>=1 43
+Tr merge_1ms    nwin  1517 exp 0.450 soe 0.713 | dexp +0.005 dsoe -0.047 | soe>=1 37
+Tr merge_10ms   nwin  1483 exp 0.466 soe 0.674 | dexp +0.016 dsoe -0.087 | soe>=1 35
+Tr merge_0.1s   nwin  1465 exp 0.476 soe 0.608 | dexp +0.033 dsoe -0.150 | soe>=1 29
+Tr randomise_1s nwin  1553 exp 0.630 soe 0.755 | dexp +0.171 dsoe -0.004 | soe>=1 35
+== HISTORY buffer / boundary exclusion (median over windows) ==
+P 10min | b0c0: 0.587/0.836 | b5c0: 0.587/0.839 | b30c0: 0.587/0.839 | b30c1: 0.589/0.836 | b30c5: 0.600/0.838 | b60c0: 0.587/0.839
+P 30min | b0c0: 0.580/0.847 | b5c0: 0.580/0.851 | b30c0: 0.580/0.852 | b30c1: 0.582/0.851 | b30c5: 0.582/0.846 | b60c0: 0.580/0.852
+P 1h    | b0c0: 0.577/0.865 | b5c0: 0.577/0.871 | b30c0: 0.577/0.872 | b30c1: 0.580/0.871 | b30c5: 0.580/0.863 | b60c0: 0.577/0.871
+P exp bound hits 0 of 12674; soe>=1 by buffer: {('10min', 0.0, 0.0): 16, ('10min', 300.0, 0.0): 17, ('10min', 1800.0, 0.0): 15, ('10min', 1800.0, 60.0): 17, ('10min', 1800.0, 300.0): 30, ('10min', 3600.0, 0.0): 15, ('1h', 0.0, 0.0): 0, ('1h', 300.0, 0.0): 0, ('1h', 1800.0, 0.0): 0, ('1h', 1800.0, 60.0): 0, ('1h', 1800.0, 300.0): 0, ('1h', 3600.0, 0.0): 0, ('30min', 0.0, 0.0): 2, ('30min', 300.0, 0.0): 2, ('30min', 1800.0, 0.0): 2, ('30min', 1800.0, 60.0): 2, ('30min', 1800.0, 300.0): 3, ('30min', 3600.0, 0.0): 2}
+Tr 10min | b0c0: 0.391/0.738 | b5c0: 0.391/0.761 | b30c0: 0.392/0.761 | b30c1: 0.395/0.754 | b30c5: 0.410/0.742 | b60c0: 0.392/0.761
+Tr 30min | b0c0: 0.376/0.797 | b5c0: 0.376/0.818 | b30c0: 0.379/0.818 | b30c1: 0.378/0.810 | b30c5: 0.385/0.796 | b60c0: 0.380/0.817
+Tr 1h    | b0c0: 0.375/0.845 | b5c0: 0.375/0.853 | b30c0: 0.376/0.853 | b30c1: 0.373/0.845 | b30c5: 0.365/0.841 | b60c0: 0.376/0.853
+Tr exp bound hits 0 of 13936; soe>=1 by buffer: {('10min', 0.0, 0.0): 32, ('10min', 300.0, 0.0): 42, ('10min', 1800.0, 0.0): 43, ('10min', 1800.0, 60.0): 39, ('10min', 1800.0, 300.0): 55, ('10min', 3600.0, 0.0): 43, ('1h', 0.0, 0.0): 1, ('1h', 300.0, 0.0): 1, ('1h', 1800.0, 0.0): 1, ('1h', 1800.0, 60.0): 1, ('1h', 1800.0, 300.0): 1, ('1h', 3600.0, 0.0): 1, ('30min', 0.0, 0.0): 3, ('30min', 300.0, 0.0): 5, ('30min', 1800.0, 0.0): 5, ('30min', 1800.0, 60.0): 3, ('30min', 1800.0, 300.0): 6, ('30min', 3600.0, 0.0): 5}
+== NESTED free-rate K=1,2,3 and K=7 grid ==
+P K1_exp   n 0.577 [0.566, 0.595] dAIC 0 dBIC 0 oos/ev -0.4062 d_oos 0.000 [0.000, 0.000] win 0.00
+P K2_free  n 0.779 [0.763, 0.797] dAIC -9545 dBIC -9530 oos/ev 0.3948 d_oos 0.900 [0.710, 1.099] win 1.00
+P K3_free  n 0.863 [0.850, 0.888] dAIC -11196 dBIC -11167 oos/ev 0.6485 d_oos 1.192 [0.968, 1.370] win 1.00
+P K7_grid  n 0.936 [0.926, 0.947] dAIC -9496 dBIC -9460 oos/ev 0.6857 d_oos 1.285 [0.980, 1.467] win 1.00
+P K7-K3 oos 0.075 [0.010, 0.129] win 0.75; K7 vs K3 dAIC 1622 dBIC 1629
+P K2_free median rates [3.788, 2017.5] masses [0.211, 0.566]
+P K3_free median rates [0.212, 16.63, 2123.0] masses [0.172, 0.134, 0.559]
+Tr K1_exp   n 0.478 [0.332, 0.648] dAIC 0 dBIC 0 oos/ev -2.6327 d_oos 0.000 [0.000, 0.000] win 0.00
+Tr K2_free  n 0.754 [0.717, 0.771] dAIC -33915 dBIC -33898 oos/ev -1.3010 d_oos 1.317 [0.930, 1.666] win 1.00
+Tr K3_free  n 0.912 [0.902, 0.940] dAIC -37504 dBIC -37471 oos/ev -0.9385 d_oos 1.719 [1.232, 2.246] win 1.00
+Tr K7_grid  n 0.950 [0.943, 0.962] dAIC -38189 dBIC -38147 oos/ev -0.7426 d_oos 1.951 [1.352, 2.518] win 1.00
+Tr K7-K3 oos 0.203 [0.136, 0.268] win 1.00; K7 vs K3 dAIC -629 dBIC -620
+Tr K2_free median rates [1.696, 1238.5] masses [0.476, 0.27]
+Tr K3_free median rates [0.058, 4.946, 1312.0] masses [0.335, 0.322, 0.264]
+== SIM grid_burnin ==
+T=4000 balanced n=0.50 reps 30 Nmed 6012 exp 0.181±0.007 soe 0.521±0.114 | nohist exp 0.181 soe 0.469
+T=4000 balanced n=0.70 reps 30 Nmed 6025 exp 0.266±0.007 soe 0.659±0.061 | nohist exp 0.266 soe 0.629
+T=4000 balanced n=0.85 reps 30 Nmed 5943 exp 0.346±0.011 soe 0.832±0.031 | nohist exp 0.346 soe 0.810
+T=4000 balanced n=0.95 reps 30 Nmed 5608 exp 0.418±0.014 soe 0.936±0.023 | nohist exp 0.418 soe 0.925
+T=4000 fast     n=0.50 reps 30 Nmed 5939 exp 0.377±0.008 soe 0.515±0.039 | nohist exp 0.377 soe 0.519
+T=4000 fast     n=0.70 reps 30 Nmed 5868 exp 0.544±0.013 soe 0.697±0.025 | nohist exp 0.544 soe 0.700
+T=4000 fast     n=0.85 reps 30 Nmed 6110 exp 0.694±0.014 soe 0.853±0.017 | nohist exp 0.694 soe 0.851
+T=4000 fast     n=0.95 reps 30 Nmed 6110 exp 0.813±0.014 soe 0.949±0.012 | nohist exp 0.813 soe 0.949
+T=4000 slow     n=0.50 reps 30 Nmed 5982 exp 0.041±0.010 soe 0.463±0.104 | nohist exp 0.041 soe 0.376
+T=4000 slow     n=0.70 reps 30 Nmed 5970 exp 0.069±0.014 soe 0.653±0.107 | nohist exp 0.069 soe 0.536
+T=4000 slow     n=0.85 reps 30 Nmed 6027 exp 0.086±0.017 soe 0.767±0.093 | nohist exp 0.086 soe 0.649
+T=4000 slow     n=0.95 reps 30 Nmed 5862 exp 0.156±0.150 soe 0.903±0.064 | nohist exp 0.155 soe 0.834
+T=50400 balanced n=0.85 reps 10 Nmed 75812 exp 0.347±0.004 soe 0.844±0.013 | nohist exp 0.347 soe 0.843
+T=50400 balanced n=0.95 reps 10 Nmed 75564 exp 0.417±0.006 soe 0.952±0.004 | nohist exp 0.417 soe 0.951
+T=50400 slow     n=0.85 reps 10 Nmed 76730 exp 0.088±0.003 soe 0.844±0.015 | nohist exp 0.088 soe 0.825
+T=50400 slow     n=0.95 reps 10 Nmed 75004 exp 0.228±0.161 soe 0.954±0.025 | nohist exp 0.228 soe 0.939
+== SIM controls ==
+exp_dgp    beta1      n=0.50 reps 30 Nmed 5996 exp 0.497±0.020 soe 0.523±0.041 beta_exp 1.02
+exp_dgp    beta1      n=0.70 reps 30 Nmed 6010 exp 0.696±0.019 soe 0.714±0.028 beta_exp 1.01
+exp_dgp    beta1      n=0.85 reps 30 Nmed 5978 exp 0.850±0.015 soe 0.856±0.019 beta_exp 1.00
+exp_dgp    beta1      n=0.95 reps 30 Nmed 6462 exp 0.948±0.016 soe 0.951±0.015 beta_exp 1.01
+exp_dgp    beta100    n=0.50 reps 30 Nmed 5998 exp 0.499±0.010 soe 0.526±0.036 beta_exp 99.53
+exp_dgp    beta100    n=0.70 reps 30 Nmed 5940 exp 0.700±0.012 soe 0.711±0.021 beta_exp 99.34
+exp_dgp    beta100    n=0.85 reps 30 Nmed 6060 exp 0.849±0.011 soe 0.855±0.013 beta_exp 100.08
+exp_dgp    beta100    n=0.95 reps 30 Nmed 5826 exp 0.949±0.011 soe 0.951±0.011 beta_exp 99.44
+offgrid6   offgrid6   n=0.50 reps 30 Nmed 6018 exp 0.194±0.006 soe 0.526±0.059 beta_exp 449.65
+offgrid6   offgrid6   n=0.70 reps 30 Nmed 5973 exp 0.289±0.010 soe 0.687±0.063 beta_exp 347.98
+offgrid6   offgrid6   n=0.85 reps 30 Nmed 5897 exp 0.384±0.012 soe 0.861±0.026 beta_exp 255.53
+offgrid6   offgrid6   n=0.95 reps 30 Nmed 6290 exp 0.477±0.022 soe 0.954±0.013 beta_exp 163.07
+powerlaw25 powerlaw25 n=0.50 reps 30 Nmed 5950 exp 0.044±0.010 soe 0.457±0.107 beta_exp 144.20
+powerlaw25 powerlaw25 n=0.70 reps 30 Nmed 5954 exp 0.073±0.019 soe 0.652±0.115 beta_exp 112.56
+powerlaw25 powerlaw25 n=0.85 reps 30 Nmed 6064 exp 0.128±0.084 soe 0.831±0.073 beta_exp 62.04
+powerlaw25 powerlaw25 n=0.95 reps 30 Nmed 6140 exp 0.340±0.242 soe 0.921±0.042 beta_exp 8.23
+cox_logOU: reps 20 Nmed 29809 exp 0.919±0.018 soe 0.937±0.013 exp_flex 0.815±0.028 soe_flex 0.856±0.025 beta_exp med 0.0196
+regime2: reps 20 Nmed 30858 exp 0.911±0.008 soe 0.937±0.006 exp_flex 0.850±0.013 soe_flex 0.891±0.014 beta_exp med 0.0278
+slow95 multistart: reps 30 two-optima frac 0.23; ll_gap median 0.00 (range 0.00-192.27); all_success 1.00; best n_exp dist [0.117, 0.148, 0.258, 0.726, 0.816]; best beta median 8.85; alt n median 0.576; N med 4188
+   best optimum slow-rate (beta<10) in 0.50 of reps; n_exp when slow 0.732, when fast 0.148
+== BIVARIATE ==
+ll gain sep vs common: median 949.9 (min 584.3); LR=2dl median 1899.8, df=1; all sessions significant at 1%: True
+ll gain biv-SoE vs common: median 5407.6 (min 2831.4); dAIC median -10791
+  beta_common    1451.696 [1212.847, 1676.104]
+  nplus_common   0.578 [0.565, 0.599]
+  nminus_common  0.040 [0.035, 0.049]
+  beta_s         2657.627 [2164.872, 2763.429]
+  beta_c         196.466 [164.141, 226.836]
+  nplus_sep      0.642 [0.621, 0.657]
+  nminus_sep     0.104 [0.085, 0.120]
+  n_s_soe        0.342 [0.329, 0.346]
+  n_c_soe        0.594 [0.587, 0.605]
+  nplus_soe      0.935 [0.923, 0.944]
+  nminus_soe     -0.259 [-0.278, -0.240]
+  tau_act_soe    252.459 [236.954, 294.607]
+  sessions with nminus_soe<0: 20 of 20; nminus_sep<0: 0
+  self masses per rate (1e-2..1e4): [0.0, 0.0, 0.0, 0.0, 0.0, 0.329, 0.004]
+  cross masses per rate (1e-2..1e4): [0.096, 0.06, 0.078, 0.101, 0.023, 0.227, 0.003]
+  slow (beta<=1) self 0.000 cross 0.233; mid (10,100) self 0.001 cross 0.124; fast (1e3,1e4) self 0.333 cross 0.231
+  act_emp mean lags1-6 [0.167, 0.091, 0.063, 0.056, 0.052, 0.043]
+  act_th mean lags1-6 [0.226, 0.129, 0.09, 0.068, 0.056, 0.048]
+  sig_emp mean lags1-6 [-0.079, -0.014, -0.001, -0.013, -0.009, -0.01]
+  sig_th mean lags1-6 [-0.035, -0.01, -0.004, -0.002, -0.001, -0.001]
+  window-level nplus median 0.868 nminus median -0.182; nminus<0 in 0.98 of 257 windows; sig_th1<0 in 0.98
+  paired act lag1 th-emp 0.061 [0.052, 0.082]; sig lag1 th -0.035 [-0.038, -0.033] emp -0.079 [-0.088, -0.070]
+== ADEQUACY spline / bivariate (medians) ==
+P   exp_spline    n 0.577 KS 0.105 CvM 47.2 ACF1 -0.058 ACF10 0.022
+P   soe_spline    n 0.870 KS 0.133 CvM 48.5 ACF1 -0.167 ACF10 0.004
+Tr  exp_spline    n 0.412 KS 0.177 CvM 209.1 ACF1 0.182 ACF10 0.039
+Tr  soe_spline    n 0.859 KS 0.036 CvM 9.6 ACF1 0.113 ACF10 -0.005
+UD  bivar_common  n 0.578 KS 0.096 CvM 31.8 ACF1 0.001 ACF10 0.070 se(n+) 0.0071 se(n-) 0.0090 n- 0.040
+== SUB-SAMPLES (full-session medians, constant background) ==
+P high-activity    k=10 exp 0.582 soe 0.947 gap 0.364
+P low-activity     k=10 exp 0.577 soe 0.926 gap 0.357
+P announcement     k= 3 exp 0.573 soe 0.953 gap 0.378
+P non-announcement k=17 exp 0.578 soe 0.931 gap 0.351
+Tr high-activity    k=10 exp 0.478 soe 0.949 gap 0.477
+Tr low-activity     k=10 exp 0.447 soe 0.952 gap 0.485
+Tr announcement     k= 3 exp 0.654 soe 0.951 gap 0.298
+Tr non-announcement k=17 exp 0.384 soe 0.949 gap 0.559

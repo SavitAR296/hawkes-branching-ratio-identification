@@ -1,0 +1,8 @@
+# Environment in which the revision analyses (experiments/R_*.py, tables_rev/, figures_rev/) were run.
+# The original-submission archive (requirements.txt, Python 3.13.5) reproduces the same headline medians.
+python==3.12.3
+numpy==2.4.4
+scipy==1.17.1
+pandas==3.0.2
+numba==0.68.0
+matplotlib==3.10.8
