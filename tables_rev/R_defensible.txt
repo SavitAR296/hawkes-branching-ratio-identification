@@ -1,0 +1,31 @@
+== P: held-out gaps to the best (nats/event) ==
+  kernel (forward 70/30, constant bg): K11_1e-2_1e4 0.0000; K9_1e-2_1e4 0.0095; K7_1e-3_1e5 0.0349; K7_1e-2_1e4 0.0998; K7_1e-3_1e4 0.1082; K3_free 0.1375; K7_1e-2_1e5 0.1516; K5_1e-2_1e4 0.2723; K2_free 0.3912; K1_exp 1.1921
+  background (blocked CV, 7-rate SoE): spline_30_0.1 0.0000; spline_30_10 0.0010; spline_120_100 0.0025; constant 0.0032; spline_60_0 0.0034; spline_30_0 0.0041; spline_15_0 0.0950; spline_5_0 0.3009
+  window (rolling, 7-rate SoE): 1h 0.0000; 10min 0.0475; 30min 0.0616
+== Tr: held-out gaps to the best (nats/event) ==
+  kernel (forward 70/30, constant bg): K7_1e-3_1e4 0.0000; K7_1e-3_1e5 0.0297; K7_1e-2_1e4 0.0456; K11_1e-2_1e4 0.0465; K7_1e-2_1e5 0.0616; K9_1e-2_1e4 0.0621; K5_1e-2_1e4 0.0909; K3_free 0.2412; K2_free 0.6037; K1_exp 1.9354
+  background (blocked CV, 7-rate SoE): spline_30_0.1 0.0000; spline_60_0 0.0012; spline_30_0 0.0013; spline_30_10 0.0014; spline_120_100 0.0022; constant 0.0032; spline_15_0 0.0552; spline_5_0 0.2050
+  window (rolling, 7-rate SoE): 30min 0.0000; 1h 0.0405; 10min 0.0424
+== P S_conv [0.439 (0.421-0.451), 0.962 (0.957-0.967)] n_specs=94 | lo: ('K1_exp', 'constant', '10min', 'merge_1ms', '30min') | hi: ('K7_1e-3_1e5', 'constant', 'full', 'raw', 'none')
+   S_def[delta=0.05] [0.868 (0.848-0.883), 0.962 (0.957-0.967)] n_specs=7 | lo: ('K11_1e-2_1e4', 'spline_30_0', 'full', 'raw', 'none') | hi: ('K7_1e-3_1e5', 'constant', 'full', 'raw', 'none')
+      session-level [0.868 (0.848-0.887), 0.963 (0.959-0.968)] n_specs=6 | lo: ('K11_1e-2_1e4', 'spline_30_0', 'full', 'raw', 'none') | hi: ('K7_1e-3_1e5', 'constant', 'full', 'raw', 'none')
+      time-local (c=10) [0.873 (0.859-0.885), 0.873 (0.859-0.885)] n_specs=1 | lo: ('K11_1e-2_1e4', 'constant', '1h', 'raw', '30min') | hi: ('K11_1e-2_1e4', 'constant', '1h', 'raw', '30min')
+   S_def[delta=0.1] [0.846 (0.834-0.867), 0.962 (0.957-0.967)] n_specs=16 | lo: ('K7_1e-2_1e4', 'spline_15_0', 'full', 'raw', 'none') | hi: ('K7_1e-3_1e5', 'constant', 'full', 'raw', 'none')
+      session-level [0.846 (0.831-0.867), 0.963 (0.959-0.968)] n_specs=14 | lo: ('K7_1e-2_1e4', 'spline_15_0', 'full', 'raw', 'none') | hi: ('K7_1e-3_1e5', 'constant', 'full', 'raw', 'none')
+      time-local (c=10) [0.873 (0.858-0.885), 0.873 (0.859-0.886)] n_specs=2 | lo: ('K7_1e-2_1e4', 'constant', '1h', 'raw', '30min') | hi: ('K11_1e-2_1e4', 'constant', '1h', 'raw', '30min')
+   S_def[delta=0.2] [0.846 (0.831-0.865), 0.962 (0.957-0.967)] n_specs=19 | lo: ('K7_1e-2_1e4', 'spline_15_0', 'full', 'raw', 'none') | hi: ('K7_1e-3_1e5', 'constant', 'full', 'raw', 'none')
+      session-level [0.846 (0.831-0.867), 0.963 (0.959-0.968)] n_specs=17 | lo: ('K7_1e-2_1e4', 'spline_15_0', 'full', 'raw', 'none') | hi: ('K7_1e-3_1e5', 'constant', 'full', 'raw', 'none')
+      time-local (c=10) [0.873 (0.855-0.885), 0.873 (0.859-0.886)] n_specs=2 | lo: ('K7_1e-2_1e4', 'constant', '1h', 'raw', '30min') | hi: ('K11_1e-2_1e4', 'constant', '1h', 'raw', '30min')
+== Tr S_conv [0.355 (0.309-0.381), 0.972 (0.963-0.977)] n_specs=92 | lo: ('K1_exp', 'constant', '1h', 'raw', '0min') | hi: ('K7_1e-3_1e4', 'constant', 'full', 'raw', 'none')
+   S_def[delta=0.05] [0.856 (0.842-0.864), 0.972 (0.964-0.977)] n_specs=13 | lo: ('K11_1e-2_1e4', 'spline_30_0', 'full', 'raw', 'none') | hi: ('K7_1e-3_1e4', 'constant', 'full', 'raw', 'none')
+      session-level [0.856 (0.842-0.863), 0.972 (0.964-0.977)] n_specs=13 | lo: ('K11_1e-2_1e4', 'spline_30_0', 'full', 'raw', 'none') | hi: ('K7_1e-3_1e4', 'constant', 'full', 'raw', 'none')
+      time-local (c=10) [nan (nan-nan), nan (nan-nan)] n_specs=0 | lo: None | hi: None
+   S_def[delta=0.1] [0.824 (0.806-0.842), 0.972 (0.964-0.977)] n_specs=17 | lo: ('K7_1e-2_1e4', 'spline_15_0', 'full', 'raw', 'none') | hi: ('K7_1e-3_1e4', 'constant', 'full', 'raw', 'none')
+      session-level [0.824 (0.806-0.842), 0.972 (0.964-0.977)] n_specs=17 | lo: ('K7_1e-2_1e4', 'spline_15_0', 'full', 'raw', 'none') | hi: ('K7_1e-3_1e4', 'constant', 'full', 'raw', 'none')
+      time-local (c=10) [nan (nan-nan), nan (nan-nan)] n_specs=0 | lo: None | hi: None
+   S_def[delta=0.2] [0.824 (0.806-0.842), 0.972 (0.964-0.977)] n_specs=17 | lo: ('K7_1e-2_1e4', 'spline_15_0', 'full', 'raw', 'none') | hi: ('K7_1e-3_1e4', 'constant', 'full', 'raw', 'none')
+      session-level [0.824 (0.806-0.842), 0.972 (0.964-0.977)] n_specs=17 | lo: ('K7_1e-2_1e4', 'spline_15_0', 'full', 'raw', 'none') | hi: ('K7_1e-3_1e4', 'constant', 'full', 'raw', 'none')
+      time-local (c=10) [nan (nan-nan), nan (nan-nan)] n_specs=0 | lo: None | hi: None
+labelled specifications: 196 (98 mid-price, 98 trades)
+P defensible at 0.10: K7_1e-2_1e4|spline_15_0|full 0.846; K7_1e-2_1e4|spline_30_0|full 0.867; K11_1e-2_1e4|spline_30_0|full 0.868; K7_1e-2_1e4|spline_30_archived|full 0.870; K7_1e-2_1e4|constant|1h 0.873; K11_1e-2_1e4|constant|1h 0.873; K7_1e-2_1e4|spline_60_0|full 0.882; K11_1e-2_1e4|spline_60_0|full 0.883; K7_1e-2_1e4|spline_30_0.1|full 0.894; K7_1e-2_1e4|spline_30_10|full 0.918; K7_1e-2_1e4|spline_120_100|full 0.925; K11_1e-2_1e4|spline_120_100|full 0.926; K7_1e-2_1e4|constant|full 0.936; K11_1e-2_1e4|constant|full 0.936; K9_1e-2_1e4|constant|full 0.938; K7_1e-3_1e5|constant|full 0.963
+Tr defensible at 0.10: K7_1e-2_1e4|spline_15_0|full 0.824; K11_1e-2_1e4|spline_30_0|full 0.856; K7_1e-2_1e4|spline_30_0|full 0.858; K7_1e-2_1e4|spline_30_archived|full 0.859; K7_1e-2_1e4|spline_60_0|full 0.870; K11_1e-2_1e4|spline_60_0|full 0.871; K7_1e-2_1e4|spline_30_0.1|full 0.886; K7_1e-2_1e4|spline_30_10|full 0.916; K7_1e-2_1e4|spline_120_100|full 0.925; K11_1e-2_1e4|spline_120_100|full 0.926; K11_1e-2_1e4|constant|full 0.949; K9_1e-2_1e4|constant|full 0.950; K7_1e-2_1e5|constant|full 0.950; K7_1e-2_1e4|constant|full 0.950; K5_1e-2_1e4|constant|full 0.953; K7_1e-3_1e5|constant|full 0.971; K7_1e-3_1e4|constant|full 0.972

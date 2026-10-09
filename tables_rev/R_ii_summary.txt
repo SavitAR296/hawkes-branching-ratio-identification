@@ -1,0 +1,48 @@
+== P vs logou (20 sessions) ==
+  soe        slow mass data 0.240 sim 0.352 | data-sim -0.113 [-0.135, -0.096] | n data 0.936 sim 0.926
+  sp_5_0     slow mass data 0.128 sim 0.252 | data-sim -0.124 [-0.139, -0.109] | n data 0.825 sim 0.828
+  sp_15_0    slow mass data 0.154 sim 0.292 | data-sim -0.137 [-0.161, -0.124] | n data 0.846 sim 0.869
+  sp_30_0    slow mass data 0.178 sim 0.302 | data-sim -0.124 [-0.150, -0.114] | n data 0.867 sim 0.883
+  sp_60_0    slow mass data 0.191 sim 0.310 | data-sim -0.119 [-0.149, -0.110] | n data 0.882 sim 0.891
+  sp_120_0   slow mass data 0.199 sim 0.317 | data-sim -0.118 [-0.143, -0.104] | n data 0.894 sim 0.895
+  sp_30_0.1  slow mass data 0.200 sim 0.317 | data-sim -0.117 [-0.143, -0.105] | n data 0.894 sim 0.895
+  10-s ACF lags 1-6 data [0.167, 0.091, 0.064, 0.056, 0.052, 0.043] sim [0.378, 0.301, 0.239, 0.19, 0.157, 0.126] | lag-1 data-sim -0.220 [-0.279, -0.182]
+== P vs regime (20 sessions) ==
+  soe        slow mass data 0.240 sim 0.383 | data-sim -0.143 [-0.158, -0.124] | n data 0.936 sim 0.955
+  sp_5_0     slow mass data 0.128 sim 0.144 | data-sim -0.016 [-0.029, +0.000] | n data 0.825 sim 0.713
+  sp_15_0    slow mass data 0.154 sim 0.306 | data-sim -0.151 [-0.172, -0.138] | n data 0.846 sim 0.877
+  sp_30_0    slow mass data 0.178 sim 0.331 | data-sim -0.153 [-0.184, -0.143] | n data 0.867 sim 0.912
+  sp_60_0    slow mass data 0.191 sim 0.345 | data-sim -0.154 [-0.186, -0.145] | n data 0.882 sim 0.924
+  sp_120_0   slow mass data 0.199 sim 0.354 | data-sim -0.155 [-0.185, -0.140] | n data 0.894 sim 0.930
+  sp_30_0.1  slow mass data 0.200 sim 0.355 | data-sim -0.154 [-0.185, -0.142] | n data 0.894 sim 0.929
+  10-s ACF lags 1-6 data [0.167, 0.091, 0.064, 0.056, 0.052, 0.043] sim [0.241, 0.224, 0.201, 0.191, 0.176, 0.16] | lag-1 data-sim -0.073 [-0.116, -0.042]
+  third-cumulant ratio k3*m/k2^2,  1-s counts: data 1.75 [1.72,1.85]; logou 1.82 [1.76,1.84]; regime 1.89 [1.85,1.93]; soe_boot 1.92 [1.89,2.05]
+  third-cumulant ratio k3*m/k2^2, 10-s counts: data 1.71 [1.64,1.80]; logou 1.77 [1.68,1.81]; regime 1.61 [1.58,1.65]; soe_boot 1.89 [1.83,1.94]
+  third-cumulant ratio k3*m/k2^2, 60-s counts: data 1.56 [1.45,1.69]; logou 1.75 [1.66,1.81]; regime 1.16 [1.13,1.26]; soe_boot 1.72 [1.59,1.75]
+  SoE-bootstrap 10-s ACF lag 1 0.228 (data 0.167)
+== Tr vs logou (20 sessions) ==
+  soe        slow mass data 0.510 sim 0.699 | data-sim -0.189 [-0.204, -0.158] | n data 0.950 sim 0.964
+  sp_5_0     slow mass data 0.328 sim 0.398 | data-sim -0.070 [-0.109, -0.024] | n data 0.764 sim 0.657
+  sp_15_0    slow mass data 0.384 sim 0.607 | data-sim -0.223 [-0.259, -0.184] | n data 0.824 sim 0.869
+  sp_30_0    slow mass data 0.420 sim 0.642 | data-sim -0.222 [-0.255, -0.193] | n data 0.858 sim 0.906
+  sp_60_0    slow mass data 0.434 sim 0.652 | data-sim -0.218 [-0.247, -0.186] | n data 0.870 sim 0.919
+  sp_120_0   slow mass data 0.447 sim 0.657 | data-sim -0.211 [-0.236, -0.190] | n data 0.881 sim 0.923
+  sp_30_0.1  slow mass data 0.452 sim 0.660 | data-sim -0.208 [-0.237, -0.186] | n data 0.886 sim 0.928
+  10-s ACF lags 1-6 data [0.29, 0.178, 0.14, 0.118, 0.105, 0.099] sim [0.574, 0.534, 0.5, 0.468, 0.435, 0.407] | lag-1 data-sim -0.281 [-0.320, -0.233]
+== Tr vs regime (20 sessions) ==
+  soe        slow mass data 0.510 sim 0.701 | data-sim -0.191 [-0.202, -0.164] | n data 0.950 sim 0.970
+  sp_5_0     slow mass data 0.328 sim 0.359 | data-sim -0.031 [-0.077, +0.017] | n data 0.764 sim 0.613
+  sp_15_0    slow mass data 0.384 sim 0.611 | data-sim -0.227 [-0.267, -0.189] | n data 0.824 sim 0.882
+  sp_30_0    slow mass data 0.420 sim 0.650 | data-sim -0.230 [-0.268, -0.202] | n data 0.858 sim 0.925
+  sp_60_0    slow mass data 0.434 sim 0.664 | data-sim -0.230 [-0.261, -0.194] | n data 0.870 sim 0.934
+  sp_120_0   slow mass data 0.447 sim 0.669 | data-sim -0.222 [-0.248, -0.188] | n data 0.881 sim 0.940
+  sp_30_0.1  slow mass data 0.452 sim 0.674 | data-sim -0.222 [-0.248, -0.188] | n data 0.886 sim 0.942
+  10-s ACF lags 1-6 data [0.29, 0.178, 0.14, 0.118, 0.105, 0.099] sim [0.55, 0.524, 0.495, 0.471, 0.45, 0.429] | lag-1 data-sim -0.265 [-0.288, -0.220]
+  third-cumulant ratio k3*m/k2^2,  1-s counts: data 2.17 [2.12,2.21]; logou 1.52 [1.49,1.58]; regime 1.47 [1.45,1.51]; soe_boot 1.81 [1.76,1.87]
+  third-cumulant ratio k3*m/k2^2, 10-s counts: data 2.18 [2.05,2.24]; logou 1.71 [1.64,1.78]; regime 1.29 [1.26,1.33]; soe_boot 1.85 [1.79,1.92]
+  third-cumulant ratio k3*m/k2^2, 60-s counts: data 2.18 [2.02,2.40]; logou 1.78 [1.73,1.87]; regime 1.11 [0.98,1.18]; soe_boot 1.65 [1.52,1.75]
+  SoE-bootstrap 10-s ACF lag 1 0.360 (data 0.290)
+== bivariate (up/down) ==
+  data: n+ 0.935 n- -0.259 slow self 0.000 slow cross 0.233 signed ACF1 -0.079
+  logou: n+ 0.926 n- 0.112 slow self 0.181 slow cross 0.175 signed ACF1 -0.007
+  regime: n+ 0.953 n- 0.096 slow self 0.199 slow cross 0.208 signed ACF1 -0.002

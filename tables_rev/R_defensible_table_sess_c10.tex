@@ -1,0 +1,39 @@
+\begin{tabular}{llrrcc}
+\toprule
+Comparison (design) & Specification & Gap, mid-price & Gap, trades & Mid-price & Trades \\
+\midrule
+Kernel (forward split) & 11 rates, $10^{-2}$--$10^{4}$ & 0.000 & 0.046 & \checkmark\checkmark\checkmark & \checkmark\checkmark\checkmark \\
+ & 9 rates, $10^{-2}$--$10^{4}$ & 0.010 & 0.062 & \checkmark\checkmark\checkmark & $\cdot$\checkmark\checkmark \\
+ & 7 rates, $10^{-3}$--$10^{5}$ & 0.035 & 0.030 & \checkmark\checkmark\checkmark & \checkmark\checkmark\checkmark \\
+ & 7 rates, $10^{-2}$--$10^{4}$ (primary) & 0.100 & 0.046 & $\cdot$\checkmark\checkmark & \checkmark\checkmark\checkmark \\
+ & 7 rates, $10^{-3}$--$10^{4}$ & 0.108 & 0.000 & $\cdot$$\cdot$\checkmark & \checkmark\checkmark\checkmark \\
+ & $K=3$, free rates & 0.138 & 0.241 & $\cdot$$\cdot$\checkmark & $\cdot$$\cdot$$\cdot$ \\
+ & 7 rates, $10^{-2}$--$10^{5}$ & 0.152 & 0.062 & $\cdot$$\cdot$\checkmark & $\cdot$\checkmark\checkmark \\
+ & 5 rates, $10^{-2}$--$10^{4}$ & 0.272 & 0.091 & $\cdot$$\cdot$$\cdot$ & $\cdot$\checkmark\checkmark \\
+ & $K=2$, free rates & 0.391 & 0.604 & $\cdot$$\cdot$$\cdot$ & $\cdot$$\cdot$$\cdot$ \\
+ & single exponential ($K=1$) & 1.192 & 1.935 & $\cdot$$\cdot$$\cdot$ & $\cdot$$\cdot$$\cdot$ \\
+\midrule
+Background (blocked CV) & spline, 30 min, $\lambda=0.1$ & 0.000 & 0.000 & \checkmark\checkmark\checkmark & \checkmark\checkmark\checkmark \\
+ & spline, 30 min, $\lambda=10$ & 0.001 & 0.001 & \checkmark\checkmark\checkmark & \checkmark\checkmark\checkmark \\
+ & spline, 120 min, $\lambda=100$ & 0.003 & 0.002 & \checkmark\checkmark\checkmark & \checkmark\checkmark\checkmark \\
+ & constant & 0.003 & 0.003 & \checkmark\checkmark\checkmark & \checkmark\checkmark\checkmark \\
+ & spline, 60 min, $\lambda=0$ & 0.003 & 0.001 & \checkmark\checkmark\checkmark & \checkmark\checkmark\checkmark \\
+ & spline, 30 min, $\lambda=0$ & 0.004 & 0.001 & \checkmark\checkmark\checkmark & \checkmark\checkmark\checkmark \\
+ & spline, 15 min, $\lambda=0$ & 0.095 & 0.055 & $\cdot$\checkmark\checkmark & $\cdot$\checkmark\checkmark \\
+ & spline, 5 min, $\lambda=0$ & 0.301 & 0.205 & $\cdot$$\cdot$$\cdot$ & $\cdot$$\cdot$$\cdot$ \\
+\midrule
+Window (one-window-ahead) & 1 h & 0.000 & 0.041 & \checkmark\checkmark\checkmark & \checkmark\checkmark\checkmark \\
+ & 10 min & 0.048 & 0.042 & \checkmark\checkmark\checkmark & \checkmark\checkmark\checkmark \\
+ & 30 min & 0.062 & 0.000 & $\cdot$\checkmark\checkmark & \checkmark\checkmark\checkmark \\
+\midrule
+Timestamp & merged or randomised & \multicolumn{2}{c}{event set differs} & $\cdot\cdot\cdot$ & $\cdot\cdot\cdot$ \\
+\midrule
+\multicolumn{2}{l}{$S_{\rm conv}$, all 94 specifications} & \multicolumn{2}{l}{0.44 [0.42, 0.45]--0.96 [0.96, 0.97]} & \multicolumn{2}{l}{0.36 [0.31, 0.38]--0.97 [0.96, 0.98]} \\
+\multicolumn{2}{l}{$S_{\rm def}$(session), $\delta=0.05$} & \multicolumn{2}{l}{0.87 [0.85, 0.89]--0.96 [0.96, 0.97]} & \multicolumn{2}{l}{0.86 [0.84, 0.86]--0.97 [0.96, 0.98]} \\
+\multicolumn{2}{l}{$S_{\rm def}$(local, $c=10$), $\delta=0.05$} & \multicolumn{2}{l}{0.87 [0.86, 0.88]--0.87 [0.86, 0.88]} & \multicolumn{2}{l}{nan [nan, nan]--nan [nan, nan]} \\
+\multicolumn{2}{l}{$S_{\rm def}$(session), $\delta=0.10$} & \multicolumn{2}{l}{0.85 [0.83, 0.87]--0.96 [0.96, 0.97]} & \multicolumn{2}{l}{0.82 [0.81, 0.84]--0.97 [0.96, 0.98]} \\
+\multicolumn{2}{l}{$S_{\rm def}$(local, $c=10$), $\delta=0.10$} & \multicolumn{2}{l}{0.87 [0.86, 0.88]--0.87 [0.86, 0.89]} & \multicolumn{2}{l}{nan [nan, nan]--nan [nan, nan]} \\
+\multicolumn{2}{l}{$S_{\rm def}$(session), $\delta=0.20$} & \multicolumn{2}{l}{0.85 [0.83, 0.87]--0.96 [0.96, 0.97]} & \multicolumn{2}{l}{0.82 [0.81, 0.84]--0.97 [0.96, 0.98]} \\
+\multicolumn{2}{l}{$S_{\rm def}$(local, $c=10$), $\delta=0.20$} & \multicolumn{2}{l}{0.87 [0.86, 0.88]--0.87 [0.86, 0.89]} & \multicolumn{2}{l}{nan [nan, nan]--nan [nan, nan]} \\
+\bottomrule
+\end{tabular}

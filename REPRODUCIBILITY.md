@@ -1,6 +1,6 @@
 # Reproducibility package - Paper A
 
-This directory contains the data snapshot, executable analysis code, frozen CSV outputs, and vector figures used by the CSF submission **What Hawkes branching ratios measure in high-frequency markets: a Euro–Bund case study of specification sensitivity and critical slowing down in activity** (revision R1).
+This directory contains the data snapshot, executable analysis code, frozen CSV outputs, and vector figures used by the CSF submission **What Hawkes branching ratios measure in high-frequency markets: specification sensitivity, mode-resolved bounds and critical slowing down in a Euro–Bund case study** (revision R1).
 
 ## Data
 `data/bund.npz` is the public Euro-Bund futures tick snapshot distributed with the research workspace (X-DataInitiative/tick-datasets; Bacry-Jaisson-Muzy data lineage). It contains 20 April-2014 sessions and the up/down mid-price and buyer/seller trade event times used in the paper.
@@ -40,4 +40,8 @@ OpenAI ChatGPT (GPT-5.6 Sol; OpenAI, accessed September 2026) assisted with draf
 `experiments/R_revision.py <task>` with tasks `timestamp` (protocols under identical conditions, 100 randomisation draws), `history` (history buffers and boundary exclusion), `nested` (free-rate K = 1, 2, 3, AIC/BIC, held-out likelihood), `bivar` (separate rates, bivariate SoE, mode-implied autocorrelations), `sim` (stationary burn-in, long horizons, correctly specified, off-grid and non-self-exciting controls, multistart), `adeq` (spline and bivariate diagnostics), `boot` and `bootfix` (refitted parametric bootstrap; `bootfix` refits the SoE-truth replications with the well-scaled optimiser), `soecheck` (headline SoE fits at the optimum) and `penalty` (knot x normalised-penalty scan with blocked cross-validation). Outputs are frozen in `tables_rev/`; summaries in `R_summaries*.txt` and `*.json`; figures in `figures_rev/`. Runtime: about three hours on one CPU core.
 
 ## Archive identifiers
-Submission version: tag `v1.0.0-submission`, commit `09ec2c8`, DOI 10.5281/zenodo.22774224. Revision version: tag `v1.1.0-revision`; its commit hash and Zenodo version DOI are recorded in the release notes and in Appendix C of the revised manuscript.
+
+- v1.0.0-submission: commit `09ec2c8`, DOI 10.5281/zenodo.22774224.
+- v1.1.0-revision: DOI 10.5281/zenodo.23245408; scripts incomplete, superseded by v1.2.0-revision.
+- v1.2.0-revision: this release; version DOI resolves at the concept DOI below.
+- concept DOI: 10.5281/zenodo.22774223.

@@ -59,22 +59,22 @@ def fig_stress():
             for col,c in [('n_exp',CE),('n_soe',CS)]:
                 ax.plot(gl[col].mean().index-0.008,gl[col].mean().values,'D',color=c,ms=4.5,mec='k',mew=0.5,label=('$T=50{,}400$ s' if col=='n_soe' else None))
         ax.set_title(f'({"abc"[["fast","balanced","slow"].index(pf)]}) {pf} profile',loc='left'); ax.set_ylim(0,1.02); ax.set_xlabel('true $n$')
-    axs[0].set_ylabel('estimated $n$'); axs[0].legend(frameon=False,fontsize=6.3,loc='upper left')
+    axs[0].set_ylabel('estimated $n$'); axs[0].legend(frameon=False,fontsize=5.6,loc='lower right')
     ax=axs[3]; ax.plot([0.45,1],[0.45,1],'k--',lw=0.6)
     for d,mk,lb in [('offgrid6','s','off-grid 6 rates'),('powerlaw25','^','power-law-like 25 rates'),('exp_dgp','o','exponential truth')]:
         g=sc[(sc.design==d)&((sc.profile=='beta100')|(sc.design!='exp_dgp'))].groupby('n_true')
         ax.plot(g.n_soe.mean().index,g.n_soe.mean().values,mk+'-',color=CS,ms=4,lw=1,label='SoE, '+lb); ax.plot(g.n_exp.mean().index,g.n_exp.mean().values,mk+':',color=CE,ms=4,lw=1)
-    ax.set_title('(d) controls (a)--(b): off-grid truths',loc='left'); ax.set_xlabel('true $n$'); ax.set_ylabel('estimated $n$'); ax.set_ylim(0,1.02); ax.legend(frameon=False,fontsize=6,loc='lower right')
+    ax.set_title('(d) controls (a)--(b): off-grid truths',loc='left'); ax.set_xlabel('true $n$'); ax.set_ylabel('estimated $n$'); ax.set_ylim(0,1.02); ax.legend(frameon=False,fontsize=5.8,loc='upper left')
     ax=axs[4]; labs=[]; x=0
-    for d,lb in [('cox_logOU','log-OU Cox'),('regime2','two-state regime')]:
+    for d,lb in [('cox_logOU','log-OU'),('regime2','regime')]:
         g=sc[sc.design==d]
         for j,(col,c,h) in enumerate([('n_exp',CE,None),('n_soe',CS,None),('n_exp_flex',CE,'//'),('n_soe_flex',CS,'//')]):
             ax.bar(x+j*0.2,g[col].mean(),0.18,yerr=g[col].std(),color=c,hatch=h,alpha=(0.55 if h else 1),edgecolor='k',lw=0.4,capsize=2)
         labs.append((x+0.3,lb)); x+=1.1
-    ax.set_xticks([p for p,_ in labs]); ax.set_xticklabels([l for _,l in labs]); ax.set_ylim(0,1.35); ax.set_ylabel('spurious $n$ (true $n=0$)')
+    ax.set_xticks([p for p,_ in labs]); ax.set_xticklabels([l for _,l in labs]); ax.set_ylim(0,1.02); ax.set_ylabel('spurious $n$ (true $n=0$)')
     ax.set_title('(e) control (c): no self-excitation',loc='left')
     from matplotlib.patches import Patch
-    ax.legend(handles=[Patch(color=CE,label='Exp, constant'),Patch(color=CS,label='SoE, constant'),Patch(facecolor='white',edgecolor='k',hatch='//',label='30-min spline')],frameon=False,fontsize=6,loc='upper center',ncol=3,handlelength=1.2,columnspacing=0.8)
+    ax.legend(handles=[Patch(color=CE,label='Exp, constant'),Patch(color=CS,label='SoE, constant'),Patch(facecolor='white',edgecolor='k',hatch='//',label='30-min spline')],frameon=False,fontsize=5.8,loc='upper center',bbox_to_anchor=(0.5,-0.22),ncol=3,handlelength=1.2,columnspacing=0.8)
     ax=axs[5]; s95=sc[sc.design=='slow95_multistart']; a95=ar[(ar.profile=='slow')&(ar.n_true==0.95)]
     ax.hist(a95.n_exp,bins=np.linspace(0,1,21),color=CE,alpha=0.5,label='archived reps'); ax.hist(s95.n_exp,bins=np.linspace(0,1,21),histtype='step',color='k',lw=1.2,label='multistart best')
     ax.set_xlabel('exponential $\\hat n$'); ax.set_ylabel('replications'); ax.set_title('(f) slow profile, $n=0.95$',loc='left'); ax.legend(frameon=False,fontsize=6.3)
@@ -92,14 +92,16 @@ def fig_penalty():
         axs[0].axhline(g.groupby('day').raw_soe.first().median(),color='k',ls=ls,lw=0.6); axs[0].axhline(g.groupby('day').raw_exp.first().median(),color='grey',ls=ls,lw=0.6)
         e=g.dropna(subset=['n_exp']).groupby(['knot_min','lam']).n_exp.median(); labs=[f'{k:g} min, $\\lambda$={l:g}' for k,l in e.index]
         axs[3].plot(range(len(e)),e.values,ls,marker=mk,color='#1f77b4' if proc=='P' else '#ff7f0e',label=('mid-price' if proc=='P' else 'trades')); axs[3].axhline(g.groupby('day').raw_exp.first().median(),color='#1f77b4' if proc=='P' else '#ff7f0e',lw=0.6,ls=':')
-        c=cv[cv.proc==proc].pivot_table(index='day',columns=['knot_min','lam'],values='cv_ll_per_event'); c=c.dropna(axis=1,thresh=nd); rel=c.sub(c[(30.0,0.0)],axis=0)
+        ct=pd.read_csv(R/'R_cv_tight.csv'); cc=pd.read_csv(R/'R_cv_constant.csv')
+        c=ct[ct.proc==proc].pivot_table(index='day',columns=['knot_min','lam'],values='cv_ll_per_event'); base=cc[cc.proc==proc].set_index('day').cv_ll_per_event
+        rel=c.sub(base.loc[c.index],axis=0)
         xs=np.arange(rel.shape[1])+(-0.12 if proc=='P' else 0.12); med=rel.median(); q1=rel.quantile(.25); q3=rel.quantile(.75)
         axs[2].errorbar(xs,med.values,yerr=[med.values-q1.values,q3.values-med.values],fmt=mk,color='#1f77b4' if proc=='P' else '#ff7f0e',ms=4,capsize=2,label=('mid-price' if proc=='P' else 'trades'))
     for a in axs[:2]: a.set_xscale('log'); a.set_xlabel('normalised penalty $\\lambda$ ($\\lambda=0$ at left edge)')
     axs[0].set_ylabel('median SoE $n$'); axs[0].set_title('(a) SoE branching ratio',loc='left'); axs[0].legend(frameon=False,fontsize=6.3,title='knot spacing',title_fontsize=6.5,loc='center right')
     axs[1].set_ylabel(r'median slow mass ($\beta_k\leq1$ s$^{-1}$)'); axs[1].set_title('(b) slow kernel mass',loc='left')
     axs[2].axhline(0,color='k',lw=0.5); axs[2].set_xticks(range(rel.shape[1])); axs[2].set_xticklabels([f'{k:g},{l:g}' for k,l in rel.columns],fontsize=7); axs[2].set_xlabel('(knot spacing min, $\\lambda$)')
-    axs[2].set_ylabel('held-out $\\ell$/event vs (30, 0)'); axs[2].set_title('(c) blocked cross-validation',loc='left'); axs[2].legend(frameon=False,fontsize=6.5)
+    axs[2].set_ylabel('held-out $\\ell$/event vs constant'); axs[2].set_title('(c) blocked cross-validation',loc='left'); axs[2].legend(frameon=False,fontsize=6.5)
     axs[3].set_xticks(range(len(labs))); axs[3].set_xticklabels([l.replace(', ','\n') for l in labs],fontsize=6.5); axs[3].set_ylabel('median exponential $n$'); axs[3].set_ylim(0,1); axs[3].set_title('(d) exponential kernel',loc='left'); axs[3].legend(frameon=False,fontsize=6.5)
     fig.tight_layout(); fig.savefig(FIG/'R_fig_penalty_knot.pdf'); plt.close(fig)
 
@@ -140,6 +142,53 @@ def fig_robustness():
     fig.tight_layout(); fig.savefig(FIG/'R_fig_robustness.pdf'); plt.close(fig)
 
 
+def fig_moderes():
+    import json; M=json.load(open(R/'R_moderes.json')); tk=json.load(open(R/'R_tick_np.json')); bv=pd.read_csv(R/'R_bivariate.csv')
+    WS=[0.001,0.01,0.1,1,5,10,30,60,120,300,600,1200]; fig,axs=plt.subplots(1,2,figsize=(7.4,3.0))
+    def ser(key,f): a=np.array([M['table'][f'{key}_{W}'][f] for W in WS]); return a[:,0],a[:,1],a[:,2]
+    ax=axs[0]
+    for key,c,lab in [('mid',CE,'mid-price'),('trd',CS,'trades')]:
+        m,lo,hi=ser(key,'nplus'); ax.plot(WS,m,'-o',color=c,ms=3,label=f'{lab}, raw'); ax.fill_between(WS,lo,hi,color=c,alpha=0.15,lw=0)
+        m,lo,hi=ser(key,'nplus_des'); ax.plot(WS,m,'--s',color=c,ms=3,mfc='white',label=f'{lab}, deseasonalised')
+    for y,c,ls,lab in [(0.577,CE,':','exp. 0.577 / SoE 0.936 (mid-price)'),(0.936,CE,':',None),(0.478,CS,':','exp. 0.478 / SoE 0.950 (trades)'),(0.950,CS,':',None)]:
+        ax.axhline(y,color=c,ls=ls,lw=0.8,label=lab)
+    ax.plot([100],[np.array(tk['mid_100']['norms'])[0,0]],'^',color=CE,ms=6,mec='k',label='nonparametric, 100-s support'); ax.plot([100],[np.array(tk['trades_100']['norms'])[0,0]],'^',color=CS,ms=6,mec='k')
+    ax.set_xscale('log'); ax.set_xlabel('bin width $W$ (s)'); ax.set_ylabel(r'$\hat n_+(W)=1-\sqrt{\mathrm{E}N_W/\mathrm{Var}N_W}$'); ax.set_ylim(0,1); ax.set_title('(a) activity mode',loc='left'); ax.legend(frameon=False,fontsize=5.8,loc='lower right')
+    ax=axs[1]
+    for key,c,lab in [('mid',CE,'mid-price (up $-$ down)'),('trd',CS,'trades (buy $-$ sell)')]:
+        m,lo,hi=ser(key,'nminus'); ax.plot(WS,m,'-o',color=c,ms=3,label=lab); ax.fill_between(WS,lo,hi,color=c,alpha=0.15,lw=0)
+    ax.axhline(bv.nminus_soe.median(),color=CE,ls='--',lw=0.9,label='bivariate SoE $n_-$ (mid-price)'); G=np.array(tk['updown_10']['norms']); ax.plot([10],[(G[0,0]+G[1,1])/2-(G[0,1]+G[1,0])/2],'^',color=CE,ms=6,mec='k',label='nonparametric up/down, 10-s support')
+    G=np.array(tk['buysell_10']['norms']); ax.plot([10],[(G[0,0]+G[1,1])/2-(G[0,1]+G[1,0])/2],'^',color=CS,ms=6,mec='k',label='nonparametric buy/sell, 10-s support')
+    ax.axhline(0,color='k',lw=0.5); ax.set_xscale('log'); ax.set_xlabel('bin width $W$ (s)'); ax.set_ylabel(r'$\hat n_-(W)=1-\sqrt{\mathrm{E}N_W/\mathrm{Var}(N^+_W-N^-_W)}$'); ax.set_ylim(-1.2,1); ax.set_title('(b) signed mode',loc='left'); ax.legend(frameon=False,fontsize=5.8,loc='lower left')
+    fig.tight_layout(); fig.savefig(FIG/'R_fig_moderes.pdf'); plt.close(fig)
+
+
+def fig_scatter():
+    lab=pd.read_csv(R/'R_defensible_labels.csv'); fig,axs=plt.subplots(1,2,figsize=(7.4,3.0),sharey=True)
+    cols={'kernel':CE,'background':CS,'window':CR}; mk={'kernel':'o','background':'s','window':'D'}
+    for ax,proc,ttl in [(axs[0],'P','(a) mid-price changes'),(axs[1],'Tr','(b) trades')]:
+        d=lab[(lab.stream==proc)&lab.gap.notna()].copy(); d['gp']=np.maximum(d.gap,d.kernel_gap.fillna(0))
+        ax.axvspan(-0.10,0.005,color='grey',alpha=0.15,lw=0)
+        for g,c in cols.items():
+            dd=d[d.group==g]; ax.scatter(-dd.gp.clip(upper=2.0),dd.n_median,s=22,color=c,marker=mk[g],edgecolor='k',linewidths=0.3,label=g+(' (kernel, forward split)' if g=='kernel' else ' (blocked CV)' if g=='background' else ' (one-window-ahead)'))
+        dd=d[(d.group=='background')&(d.gp<=0.1)&d.kernel.isin(['K7_1e-2_1e4','K11_1e-2_1e4'])]; ax.annotate('multiscale backgrounds:\nheld-out flat, $n$ spans %.2f-%.2f'%(dd.n_median.min(),dd.n_median.max()),xy=(-0.01,dd.n_median.min()),xytext=(-1.25,0.5),fontsize=6.5,arrowprops=dict(arrowstyle='->',lw=0.6))
+        ax.set_xlim(-2.05,0.05); ax.set_xlabel(r'$\Delta\ell$ to the best of its comparison (nats/event)'); ax.set_title(ttl,loc='left'); ax.set_ylim(0.3,1.0)
+    axs[0].set_ylabel('median $n$'); axs[0].legend(frameon=False,fontsize=6,loc='lower left')
+    fig.tight_layout(); fig.savefig(FIG/'R_fig_scatter.pdf'); plt.close(fig)
+
+
+def fig_modes():
+    bv=pd.read_csv(ROOT/'tables_csf/A_bivariate_modes.csv').sort_values('day').reset_index(drop=True); h=pd.read_csv(ROOT/'tables/E1_h3prime.csv')
+    fig,axs=plt.subplots(1,2,figsize=(7.2,2.8)); x=np.arange(1,len(bv)+1)
+    axs[0].plot(x,bv.n_plus,'o-',color=CE,ms=3.5,label='activity $n_+=n_s+n_c$'); axs[0].plot(x,bv.n_minus,'s-',color=CS,ms=3.5,label='signed $n_-=n_s-n_c$')
+    axs[0].axhline(bv.n_plus.median(),color=CE,ls='--',lw=0.7); axs[0].axhline(bv.n_minus.median(),color=CS,ls='--',lw=0.7); axs[0].set_xticks(x[::2]); axs[0].set_xlabel('trading session (1 = 1 April 2014)'); axs[0].set_ylabel('mode branching ratio'); axs[0].set_ylim(0,0.7); axs[0].set_title('(a) fitted bivariate eigenmodes',loc='left'); axs[0].legend(frameon=False,fontsize=6.5)
+    for proc,c,lab in [('P',CE,'price-change activity'),('Tr',CS,'trade activity')]:
+        s=h[h.proc==proc]; axs[1].plot(lags,[s[f'rho{k}_emp'].mean() for k in lags],'-o',color=c,ms=3,label=lab)
+    s=h[h.proc=='P']; axs[1].plot(lags,[s[f'rho{k}_ret'].mean() for k in lags],'-^',color=CR,ms=3,label='signed price changes'); axs[1].axhline(0,color='k',lw=0.5)
+    axs[1].set_xlabel('lag (10-s bins)'); axs[1].set_ylabel('mean autocorrelation'); axs[1].set_title('(b) activity persists; signed mode reverses',loc='left'); axs[1].legend(frameon=False,fontsize=6.5)
+    fig.tight_layout(); fig.savefig(FIG/'R_fig_modes.pdf'); plt.close(fig)
+
+
 if __name__=='__main__':
     which=sys.argv[1:] or ['csd','bivariate','stress']
-    for w in which: {'csd':fig_csd,'bivariate':fig_bivariate,'stress':fig_stress,'penalty':fig_penalty,'robustness':fig_robustness}[w](); print('fig',w,'ok')
+    for w in which: {'csd':fig_csd,'bivariate':fig_bivariate,'stress':fig_stress,'penalty':fig_penalty,'robustness':fig_robustness,'moderes':fig_moderes,'scatter':fig_scatter,'modes':fig_modes}[w](); print('fig',w,'ok')

@@ -632,7 +632,215 @@ def task_bootfix():
             print('bootfix', day, proc, '%.0fs' % (time.time() - t0), flush=True)
 
 
+
+# ================================================================ held-out evidence for the operational defensibility rule (Section 3.1)
+SOE_GRIDS = dict([(f'K{K}_1e-2_1e4', np.geomspace(1e-2, 1e4, K)) for K in (5, 7, 9, 11)] +
+                 [('K7_1e-3_1e4', np.geomspace(1e-3, 1e4, 7)), ('K7_1e-2_1e5', np.geomspace(1e-2, 1e5, 7)), ('K7_1e-3_1e5', np.geomspace(1e-3, 1e5, 7))])
+
+
+def task_heldout_grids():
+    """Forward held-out log-likelihood (fit on the first 70% of each session, evaluate the last 30% with the observed
+    history) for every SoE basis grid; same design as task_nested, well-scaled optimiser."""
+    bund = load_bund(); rows = []
+    for day, D in bund.items():
+        T = session_T(D)
+        for proc in ['P', 'Tr']:
+            t = D[proc][D[proc] > 0]; Ttr = 0.7 * T; ttr = t[t < Ttr]; tte = t[t >= Ttr] - Ttr; hte = ttr - Ttr
+            for name, be in SOE_GRIDS.items():
+                f = fit_soe_masses(ttr, np.empty(0), Ttr, be)
+                ll = soe_loglik(tte, hte, T - Ttr, f['mu'], f['alpha'], be)
+                rows.append(dict(day=day, proc=proc, grid=name, oos_ll_per_event=ll / len(tte), N_test=len(tte), n_train=f['n']))
+        print('heldout_grids', day, flush=True)
+    pd.DataFrame(rows).to_csv(OUT / 'R_heldout_grids.csv', index=False)
+
+
+def blocked_cv_const(t, T, betas=BETAS7, nfold=5, block=1800.0):
+    """Same interleaved blocked cross-validation as blocked_cv_soe, with a constant background (masses parametrisation)."""
+    t = np.ascontiguousarray(t, float); betas = np.asarray(betas, float)
+    R = _soe_R(t, np.empty(0), betas) * betas[None, :]
+    nb = int(np.ceil(T / block)); blk = np.minimum((t // block).astype(int), nb - 1)
+    edges = np.minimum(np.arange(0, nb + 1) * block, T); L = np.diff(edges)
+    S_blk = np.zeros((nb, len(betas)))
+    for b in range(nb):
+        a0, a1 = edges[b], edges[b + 1]; tj = t[t < a1]
+        for k, bt in enumerate(betas):
+            S_blk[b, k] = np.sum(np.exp(-bt * np.maximum(a0 - tj, 0)) - np.exp(-bt * (a1 - tj)))
+    tot_ll = 0.0; tot_n = 0
+    for fold in range(nfold):
+        test = (np.arange(nb) % nfold) == fold; tr = ~test[blk]; te = test[blk]
+        Ltr, Lte = L[~test].sum(), L[test].sum(); Str, Ste = S_blk[~test].sum(0), S_blk[test].sum(0); Rtr = R[tr]
+        def f(x):
+            mu = x[0]; m = x[1:]; lam = mu + Rtr @ m
+            if np.any(lam <= 0): return 1e100, np.zeros_like(x)
+            inv = 1 / lam
+            return -(np.log(lam).sum() - mu * Ltr - m @ Str), -np.r_[inv.sum() - Ltr, Rtr.T @ inv - Str]
+        x0 = np.r_[0.1 * len(t) / T, np.full(len(betas), 0.9 / len(betas))]
+        res = minimize(f, x0, jac=True, method='L-BFGS-B', bounds=[(1e-12, None)] * len(x0),
+                       options={'ftol': 1e-15, 'gtol': 1e-9, 'maxiter': 50000, 'maxfun': 50000})
+        mu = res.x[0]; m = res.x[1:]; lam_te = mu + R[te] @ m
+        tot_ll += np.log(lam_te).sum() - mu * Lte - m @ Ste; tot_n += int(te.sum())
+    return tot_ll / max(tot_n, 1)
+
+
+def task_cv_const():
+    bund = load_bund(); rows = []
+    for day, D in bund.items():
+        T = session_T(D)
+        for proc in ['P', 'Tr']:
+            t = D[proc][D[proc] > 0]
+            rows.append(dict(day=day, proc=proc, background='constant', cv_ll_per_event=blocked_cv_const(t, T)))
+    pd.DataFrame(rows).to_csv(OUT / 'R_cv_constant.csv', index=False)
+
+
+def task_heldout_windows():
+    """Window conventions judged on held-out data: on the common test region [36000 s, T) each window's parameters are
+    estimated on the preceding window (30-min history buffer) and evaluated on the window itself; the full-session
+    reference is fitted once on [0, 36000 s). SoE seven-rate grid, constant background."""
+    bund = load_bund(); rows = []; T0 = 36000.0; H = 1800.0
+    for day, D in bund.items():
+        T = session_T(D)
+        for proc in ['P', 'Tr']:
+            t = D[proc][D[proc] > 0]
+            fs = fit_soe_masses(t[t < T0], np.empty(0), T0, BETAS7, extra_starts=False)
+            for W in (600.0, 1800.0, 3600.0):
+                llw = lls = 0.0; ne = 0; skipped = 0; last = None
+                for s0 in np.arange(T0, T - 1e-9, W):
+                    e = min(s0 + W, T); x = t[(t >= s0) & (t < e)] - s0; h = t[(t >= s0 - H) & (t < s0)] - s0
+                    xp = t[(t >= s0 - W) & (t < s0)] - (s0 - W); hp = t[(t >= s0 - W - H) & (t < s0 - W)] - (s0 - W)
+                    if len(xp) >= 30:
+                        fw = fit_soe_masses(xp, hp, W, BETAS7, extra_starts=False); last = fw
+                    else:
+                        fw = last if last is not None else fs; skipped += 1     # too few events to refit: keep the last estimate
+                    llw += soe_loglik(x, h, e - s0, fw['mu'], fw['alpha'], BETAS7)
+                    lls += soe_loglik(x, h, e - s0, fs['mu'], fs['alpha'], BETAS7); ne += len(x)
+                rows.append(dict(day=day, proc=proc, window=int(W), ll_window_per_event=llw / ne, ll_static_per_event=lls / ne, N_test=ne, skipped=skipped))
+        print('heldout_windows', day, flush=True)
+    pd.DataFrame(rows).to_csv(OUT / 'R_heldout_windows.csv', index=False)
+
+
+
+def blocked_cv_spline_tight(t, T, knot_step, lam, betas=BETAS7, nfold=5, block=1800.0):
+    """blocked_cv_soe with a well-scaled parametrisation (spline coefficients in units of the mean rate, kernel masses)
+    and tight tolerances; used to check the original spline cross-validation."""
+    t = np.ascontiguousarray(t, float); betas = np.asarray(betas, float)
+    B, I_full, D2 = A.bspline_basis(t, T, knot_step); m = B.shape[1]; N = len(t); rbar = N / T; pen = lam * N
+    R = _soe_R(t, np.empty(0), betas) * betas[None, :]
+    nb = int(np.ceil(T / block)); blk = np.minimum((t // block).astype(int), nb - 1)
+    knots = np.r_[np.repeat(0.0, 4), np.arange(knot_step, T, knot_step), np.repeat(T, 4)]
+    ants = [BSpline(knots, np.eye(m)[j], 3, extrapolate=False).antiderivative() for j in range(m)]
+    edges = np.minimum(np.arange(0, nb + 1) * block, T)
+    I_blk = np.array([[ants[j](edges[b + 1]) - ants[j](edges[b]) for j in range(m)] for b in range(nb)]) * rbar
+    S_blk = np.zeros((nb, len(betas)))
+    for b in range(nb):
+        a0, a1 = edges[b], edges[b + 1]; tj = t[t < a1]
+        for k, bt in enumerate(betas):
+            S_blk[b, k] = np.sum(np.exp(-bt * np.maximum(a0 - tj, 0)) - np.exp(-bt * (a1 - tj)))
+    Bs = B * rbar; tot = 0.0; ntot = 0
+    for fold in range(nfold):
+        test = (np.arange(nb) % nfold) == fold; tr = ~test[blk]; te = test[blk]
+        Itr, Ite, Str, Ste = I_blk[~test].sum(0), I_blk[test].sum(0), S_blk[~test].sum(0), S_blk[test].sum(0); Btr = Bs[tr]; Rtr = R[tr]
+        def f(x):
+            u = x[:m]; q = x[m:]; lam_ = np.asarray(Btr @ u).ravel() + Rtr @ q
+            if np.any(lam_ <= 0): return 1e100, np.zeros_like(x)
+            Du = D2 @ u; inv = 1 / lam_
+            ll = np.log(lam_).sum() - Itr @ u - Str @ q - pen * Du @ Du
+            return -ll, -np.r_[np.asarray(Btr.T @ inv).ravel() - Itr - 2 * pen * (D2.T @ Du), Rtr.T @ inv - Str]
+        x0 = np.r_[np.full(m, 0.1), np.full(len(betas), 0.9 / len(betas))]
+        res = minimize(f, x0, jac=True, method='L-BFGS-B', bounds=[(1e-12, None)] * len(x0), options={'ftol': 1e-14, 'gtol': 1e-9, 'maxiter': 50000, 'maxfun': 50000})
+        u = res.x[:m]; q = res.x[m:]; lam_te = np.asarray(Bs[te] @ u).ravel() + R[te] @ q
+        tot += np.log(np.maximum(lam_te, 1e-300)).sum() - Ite @ u - Ste @ q; ntot += int(te.sum())
+    return tot / max(ntot, 1)
+
+
+def task_k11_variants():
+    """Background and window variants for the 11-rate grid (the held-out best kernel for mid-price changes)."""
+    bund = load_bund(); rows, done = resume('R_k11_variants.csv'); be = SOE_GRIDS['K11_1e-2_1e4']
+    for day, D in bund.items():
+        if str(day) in done: continue
+        T = session_T(D)
+        for proc in ['P', 'Tr']:
+            t_all = D[proc]; t = t_all[t_all > 0]
+            raw_e = fit_exp_mle(t, np.empty(0), T); raw_s = fit_soe_mle(t, np.empty(0), T, betas=be)
+            for ks, lam in [(300.0, 0.0), (1800.0, 0.0), (3600.0, 0.0), (7200.0, 100.0)]:
+                fl = A.flex_background_fit(t, T, model='soe', knot_step=ks, penalty=lam * len(t) / (len(t) / T) ** 2, betas=be, beta_hint=raw_e['beta'], raw_fit=raw_s)
+                rows.append(dict(day=day, proc=proc, variant=f'spline_{ks/60:g}_{lam:g}', n=fl['n']))
+            for W, wn in [(600.0, '10min'), (1800.0, '30min'), (3600.0, '1h')]:
+                ns = []
+                for s0 in np.arange(0.0, T - W + 1e-9, W):
+                    x = t_all[(t_all >= s0) & (t_all < s0 + W)] - s0; h = t_all[(t_all >= s0 - 1800) & (t_all < s0)] - s0
+                    if len(x) < 30: continue
+                    ns.append(fit_soe_mle(x, h, W, betas=be)['n'])
+                rows.append(dict(day=day, proc=proc, variant=wn, n=float(np.median(ns))))
+        pd.DataFrame(rows).to_csv(OUT / 'R_k11_variants.csv', index=False)
+        print('k11', day, flush=True)
+
+
+
+def fit_flex_tight(t, T, knot_step, lam, betas=BETAS7):
+    """Penalised spline background + SoE kernel, well-scaled parametrisation (spline coefficients in units of the mean
+    rate, kernel masses), tight tolerances, two starts. Same model and normalised penalty as flex_fit_norm."""
+    t = np.ascontiguousarray(t, float); betas = np.asarray(betas, float)
+    B, I_full, D2 = A.bspline_basis(t, T, knot_step); m = B.shape[1]; N = len(t); rbar = N / T; pen = lam * N
+    Bs = B * rbar; Is = np.asarray(I_full).ravel() * rbar
+    R = _soe_R(t, np.empty(0), betas) * betas[None, :]
+    S = np.array([np.sum(1 - np.exp(-b * (T - t))) for b in betas])
+    def f(x):
+        u = x[:m]; q = x[m:]; lam_ = np.asarray(Bs @ u).ravel() + R @ q
+        if np.any(lam_ <= 0): return 1e100, np.zeros_like(x)
+        Du = D2 @ u; inv = 1 / lam_
+        return -(np.log(lam_).sum() - Is @ u - S @ q - pen * Du @ Du), -np.r_[np.asarray(Bs.T @ inv).ravel() - Is - 2 * pen * (D2.T @ Du), R.T @ inv - S]
+    best = None
+    for u0, q0 in [(0.1, 0.9), (0.5, 0.5)]:
+        x0 = np.r_[np.full(m, u0), np.full(len(betas), q0 / len(betas))]
+        res = minimize(f, x0, jac=True, method='L-BFGS-B', bounds=[(1e-12, None)] * len(x0), options={'ftol': 1e-14, 'gtol': 1e-9, 'maxiter': 50000, 'maxfun': 50000})
+        if best is None or res.fun < best.fun: best = res
+    q = best.x[m:]
+    return dict(n=float(q.sum()), masses=q, loglik=-best.fun, nbas=m, success=best.success)
+
+
+
+CV_CFG_TIGHT = [(300.0, 0.0), (900.0, 0.0), (1800.0, 0.0), (1800.0, 0.1), (1800.0, 10.0), (3600.0, 0.0), (7200.0, 100.0)]
+
+
+def task_cv_tight():
+    """Blocked cross-validation of spline backgrounds with the well-scaled optimiser (replaces R_penalty_cv.csv for
+    inference), plus full-sample tight fits of the same configurations."""
+    bund = load_bund(); rows, done = resume('R_cv_tight.csv')
+    for day, D in bund.items():
+        if str(day) in done: continue
+        T = session_T(D); t0 = time.time()
+        for proc in ['P', 'Tr']:
+            t = D[proc][D[proc] > 0]
+            for ks, lam in CV_CFG_TIGHT:
+                cvll = blocked_cv_spline_tight(t, T, ks, lam); f = fit_flex_tight(t, T, ks, lam)
+                rows.append(dict(day=day, proc=proc, knot_min=ks / 60, lam=lam, cv_ll_per_event=cvll, n_tight=f['n'],
+                                 slow_mass_tight=float(f['masses'][BETAS7 <= 1].sum())))
+        pd.DataFrame(rows).to_csv(OUT / 'R_cv_tight.csv', index=False)
+        print('cv_tight', day, '%.0fs' % (time.time() - t0), flush=True)
+
+
+def task_k11_tight():
+    """Background (tight fit) and window variants of the 11-rate grid."""
+    bund = load_bund(); rows, done = resume('R_k11_variants.csv'); be = SOE_GRIDS['K11_1e-2_1e4']
+    for day, D in bund.items():
+        if str(day) in done: continue
+        T = session_T(D)
+        for proc in ['P', 'Tr']:
+            t_all = D[proc]; t = t_all[t_all > 0]
+            for ks, lam in [(300.0, 0.0), (1800.0, 0.0), (3600.0, 0.0), (7200.0, 100.0)]:
+                rows.append(dict(day=day, proc=proc, variant=f'spline_{ks/60:g}_{lam:g}', n=fit_flex_tight(t, T, ks, lam, betas=be)['n']))
+            for W, wn in [(600.0, '10min'), (1800.0, '30min'), (3600.0, '1h')]:
+                ns = []
+                for s0 in np.arange(0.0, T - W + 1e-9, W):
+                    x = t_all[(t_all >= s0) & (t_all < s0 + W)] - s0; h = t_all[(t_all >= s0 - 1800) & (t_all < s0)] - s0
+                    if len(x) < 30: continue
+                    ns.append(fit_soe_mle(x, h, W, betas=be)['n'])
+                rows.append(dict(day=day, proc=proc, variant=wn, n=float(np.median(ns))))
+        pd.DataFrame(rows).to_csv(OUT / 'R_k11_variants.csv', index=False)
+        print('k11', day, flush=True)
+
+
 if __name__ == '__main__':
     task = sys.argv[1]; t0 = time.time(); print('START', task, flush=True)
-    {'soecheck': task_soecheck, 'bootfix': task_bootfix, 'adeq': task_adeq, 'timestamp': task_timestamp, 'history': task_history, 'bivar': task_bivar, 'penalty': task_penalty, 'nested': task_nested, 'sim': task_sim, 'boot': task_boot}[task]()
+    {'cv_tight': task_cv_tight, 'k11_tight': task_k11_tight, 'k11_variants': task_k11_variants, 'heldout_grids': task_heldout_grids, 'cv_const': task_cv_const, 'heldout_windows': task_heldout_windows, 'soecheck': task_soecheck, 'bootfix': task_bootfix, 'adeq': task_adeq, 'timestamp': task_timestamp, 'history': task_history, 'bivar': task_bivar, 'penalty': task_penalty, 'nested': task_nested, 'sim': task_sim, 'boot': task_boot}[task]()
     print('DONE', task, '%.0f s' % (time.time() - t0), flush=True)

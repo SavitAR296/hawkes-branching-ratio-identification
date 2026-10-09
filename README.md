@@ -2,7 +2,7 @@
 
 Reproducibility repository for the manuscript:
 
-**What Hawkes branching ratios measure in high-frequency markets: a Euro–Bund case study of specification sensitivity and critical slowing down in activity** (revised version, CSF manuscript CHAOS-D-26-09420)
+**What Hawkes branching ratios measure in high-frequency markets: specification sensitivity, mode-resolved bounds and critical slowing down in a Euro–Bund case study** (revised version, CSF manuscript CHAOS-D-26-09420)
 
 Boyan Xing — Department of Mathematical Sciences, Faculty of Science and Technology, Beijing Normal-Hong Kong Baptist University, Zhuhai, Guangdong, China.
 
@@ -32,12 +32,14 @@ python experiments/A_csf_additions.py all --reps 30
 python experiments/make_figures.py
 ```
 
-Revision analyses (about three hours on one CPU core; every task resumes where it stopped):
+Revision analyses (about three hours of single-core computation, measured; every task resumes where it stopped):
 
 ```bash
-for t in timestamp history nested bivar sim adeq boot bootfix soecheck penalty; do python experiments/R_revision.py $t; done
+for t in timestamp history nested bivar sim adeq boot bootfix soecheck penalty heldout_grids cv_const heldout_windows cv_tight k11_tight; do python experiments/R_revision.py $t; done
+python experiments/R_indirect.py calibrate && python experiments/R_indirect.py simulate && python experiments/R_indirect_summary.py && python experiments/R_indirect_matched.py
+python experiments/R_moderes.py && python experiments/R_bivar_resid.py && python experiments/R_pooled_vr.py && python experiments/R_tick_np.py main 100 && python experiments/R_t4.py && python experiments/R_defensible.py && CADM=10 python experiments/R_defensible.py
 python experiments/R_summaries.py && python experiments/R_summaries2.py && python experiments/R_summaries3.py && python experiments/R_summaries4.py
-python experiments/R_make_figures.py csd bivariate stress penalty robustness
+python experiments/R_make_figures.py csd bivariate stress penalty robustness moderes scatter modes
 ```
 
 The revision analyses were run with the versions in `requirements-revision.txt` (Python 3.12.3); the headline full-session medians are identical under both environments.
@@ -60,6 +62,9 @@ The robustness script is computationally heavier than figure generation; the fro
 - Non-self-exciting Cox / regime controls give spurious n ≈ 0.91–0.94 under both kernels (0.82–0.89 with a 30-min spline).
 - Bivariate SoE: n+ = 0.935, n− = −0.259 (negative in 20/20 sessions); cross-excitation carries all slow mass.
 - Refitted parametric bootstrap: every candidate lies outside its null band in every session; within-model SE(n) 0.004–0.010.
+- Nonparametric pooled kernel norm (mid-price, Table 3): 0.726 / 0.874 / 0.934 at 1 / 10 / 100 s support; up/down cross-kernel norm 0.59 [0.57, 0.62] at 1 s and 0.86 [0.82, 0.90] at 10 s.
+- Slow cross-excitation slows self-excitation (Table 9): 0.228 in the data; +0.235 [0.211, 0.259] after subtracting the log-OU control.
+- Mode-resolved lower bounds on n+ (Table 10): 0.62 [0.59, 0.67] at W* = 60 s, 0.75 [0.62, 0.81] at 300 s, pooled 0.82 [0.71, 0.92].
 
 ## Randomness
 
@@ -75,4 +80,4 @@ Code is released under the MIT License (see `LICENSE`). See `DATA_REDISTRIBUTION
 
 ## Citation
 
-See `CITATION.cff`. Release this revision as v1.1.0 and cite the new Zenodo version DOI in the manuscript (Appendix C). Once the manuscript is accepted, add the journal DOI.
+See `CITATION.cff`. Once the manuscript is accepted, add the journal DOI.

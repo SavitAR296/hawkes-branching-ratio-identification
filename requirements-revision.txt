@@ -6,3 +6,4 @@ scipy==1.17.1
 pandas==3.0.2
 numba==0.68.0
 matplotlib==3.10.8
+tick==0.8.0.2   # nonparametric cross-check (R_tick_np.py); see the attribute-guard patch in the script

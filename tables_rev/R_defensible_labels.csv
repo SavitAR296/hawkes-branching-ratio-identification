@@ -1,0 +1,197 @@
+stream,kernel,background,window,timestamp,buffer,n_median,group,gap,kernel_gap,def_0.05,def_0.1,def_0.2,reason_010
+P,K1_exp,constant,full,raw,none,0.5773492642586633,kernel,1.1921310031163541,1.1921310031163541,False,False,False,kernel gap 1.192
+P,K2_free,constant,full,raw,none,0.7785244202114956,kernel,0.3912249290793801,0.3912249290793801,False,False,False,kernel gap 0.391
+P,K3_free,constant,full,raw,none,0.8632011490651342,kernel,0.1375286179940015,0.1375286179940015,False,False,True,kernel gap 0.138
+P,K5_1e-2_1e4,constant,full,raw,none,0.9380114253122005,kernel,0.27228700475607637,0.27228700475607637,False,False,False,kernel gap 0.272
+P,K7_1e-2_1e4,constant,full,raw,none,0.9363149800912608,kernel,0.09981122850949053,0.09981122850949053,False,True,True,
+P,K9_1e-2_1e4,constant,full,raw,none,0.9379718409588265,kernel,0.00950541623221035,0.00950541623221035,True,True,True,
+P,K11_1e-2_1e4,constant,full,raw,none,0.9364005914610891,kernel,0.0,0.0,True,True,True,
+P,K7_1e-3_1e4,constant,full,raw,none,0.9632263486871124,kernel,0.10815858680441015,0.10815858680441015,False,False,True,kernel gap 0.108
+P,K7_1e-2_1e5,constant,full,raw,none,0.9365673886703467,kernel,0.15155101979020236,0.15155101979020236,False,False,True,kernel gap 0.152
+P,K7_1e-3_1e5,constant,full,raw,none,0.9632898533739367,kernel,0.03488252369378331,0.03488252369378331,True,True,True,
+P,K1_exp,spline_30_archived,full,raw,none,0.5770112477460736,background,0.004149700408038193,1.1921310031163541,False,False,False,kernel gap 1.192
+P,K7_1e-2_1e4,spline_30_archived,full,raw,none,0.8699822757706317,background,0.004149700408038193,0.09981122850949053,False,True,True,
+P,K7_1e-2_1e4,spline_5_0,full,raw,none,0.8253099387249336,background,0.3008513921661222,0.09981122850949053,False,False,False,background gap 0.301
+P,K7_1e-2_1e4,spline_5_0.01,full,raw,none,0.852503321591348,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_5_1,full,raw,none,0.8792491303035956,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_5_100,full,raw,none,0.8995131402862193,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_15_0,full,raw,none,0.8459546528947355,background,0.09497872125988582,0.09981122850949053,False,True,True,
+P,K1_exp,spline_15_0,full,raw,none,0.5767677323725229,background,0.09497872125988582,1.1921310031163541,False,False,False,kernel gap 1.192
+P,K7_1e-2_1e4,spline_15_0.01,full,raw,none,0.8720629097308696,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_15_1,full,raw,none,0.8955680226277721,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_15_100,full,raw,none,0.9183754901530904,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_30_0,full,raw,none,0.8669339520546955,background,0.004149700408038193,0.09981122850949053,False,True,True,
+P,K1_exp,spline_30_0,full,raw,none,0.5768547715356537,background,0.004149700408038193,1.1921310031163541,False,False,False,kernel gap 1.192
+P,K7_1e-2_1e4,spline_30_0.001,full,raw,none,0.8758775340594347,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_30_0.01,full,raw,none,0.8831053372261037,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_30_0.1,full,raw,none,0.8937811013653738,background,0.0,0.09981122850949053,False,True,True,
+P,K7_1e-2_1e4,spline_30_1,full,raw,none,0.9037975864032954,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_30_10,full,raw,none,0.9179476079693023,background,0.000982295617962592,0.09981122850949053,False,True,True,
+P,K1_exp,spline_30_10,full,raw,none,0.535502567972655,background,0.000982295617962592,1.1921310031163541,False,False,False,kernel gap 1.192
+P,K7_1e-2_1e4,spline_30_100,full,raw,none,0.9209155203629674,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_60_0,full,raw,none,0.8818665948067171,background,0.003433219487455119,0.09981122850949053,False,True,True,
+P,K1_exp,spline_60_0,full,raw,none,0.5768550009669322,background,0.003433219487455119,1.1921310031163541,False,False,False,kernel gap 1.192
+P,K7_1e-2_1e4,spline_60_0.01,full,raw,none,0.8941672817047417,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_60_1,full,raw,none,0.9171204217087356,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_60_100,full,raw,none,0.9241345897669881,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_120_0,full,raw,none,0.8939373028083832,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_120_0.01,full,raw,none,0.9058554627553626,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_120_1,full,raw,none,0.9206662471872862,background,,0.09981122850949053,False,False,False,background not assessed by (c)
+P,K7_1e-2_1e4,spline_120_100,full,raw,none,0.9248555563071306,background,0.0025396962485211283,0.09981122850949053,False,True,True,
+P,K11_1e-2_1e4,spline_120_100,full,raw,none,0.9255539310024892,background,0.0025396962485211283,0.0,True,True,True,
+P,K11_1e-2_1e4,spline_30_0,full,raw,none,0.8681735180763912,background,0.004149700408038193,0.0,True,True,True,
+P,K11_1e-2_1e4,spline_5_0,full,raw,none,0.8212179415964208,background,0.3008513921661222,0.0,False,False,False,background gap 0.301
+P,K11_1e-2_1e4,spline_60_0,full,raw,none,0.8833960718302428,background,0.003433219487455119,0.0,True,True,True,
+P,K1_exp,constant,10min,raw,30min,0.5927323459254805,window,0.04754347505614931,1.1921310031163541,False,False,False,kernel gap 1.192
+P,K7_1e-2_1e4,constant,10min,raw,30min,0.8165946362240819,window,0.04754347505614931,0.09981122850949053,False,True,True,
+P,K11_1e-2_1e4,constant,10min,raw,30min,0.8237919325810763,window,0.04754347505614931,0.0,True,True,True,
+P,K1_exp,constant,30min,raw,30min,0.5757630678112343,window,0.06157058361405521,1.1921310031163541,False,False,False,kernel gap 1.192
+P,K7_1e-2_1e4,constant,30min,raw,30min,0.8474022595571806,window,0.06157058361405521,0.09981122850949053,False,True,True,
+P,K11_1e-2_1e4,constant,30min,raw,30min,0.8479800369584423,window,0.06157058361405521,0.0,False,True,True,
+P,K1_exp,constant,1h,raw,30min,0.581029080291845,window,0.0,1.1921310031163541,False,False,False,kernel gap 1.192
+P,K7_1e-2_1e4,constant,1h,raw,30min,0.8702723462738167,window,0.0,0.09981122850949053,False,True,True,
+P,K11_1e-2_1e4,constant,1h,raw,30min,0.871995913910595,window,0.0,0.0,True,True,True,
+P,K1_exp,constant,full,merge_1ms,none,0.46913835800466597,timestamp,,1.1921310031163541,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.192"
+P,K7_1e-2_1e4,constant,full,merge_1ms,none,0.8905802757887447,timestamp,,0.09981122850949053,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+P,K1_exp,constant,10min,merge_1ms,30min,0.4383357502803975,timestamp,,1.1921310031163541,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.192"
+P,K7_1e-2_1e4,constant,10min,merge_1ms,30min,0.7001498597595706,timestamp,,0.09981122850949053,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+P,K1_exp,constant,full,merge_10ms,none,0.5081102870162778,timestamp,,1.1921310031163541,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.192"
+P,K7_1e-2_1e4,constant,full,merge_10ms,none,0.8701654767221387,timestamp,,0.09981122850949053,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+P,K1_exp,constant,10min,merge_10ms,30min,0.45074796811950574,timestamp,,1.1921310031163541,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.192"
+P,K7_1e-2_1e4,constant,10min,merge_10ms,30min,0.6309519841751217,timestamp,,0.09981122850949053,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+P,K1_exp,constant,full,merge_0.1s,none,0.5673229025728573,timestamp,,1.1921310031163541,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.192"
+P,K7_1e-2_1e4,constant,full,merge_0.1s,none,0.8536830803300586,timestamp,,0.09981122850949053,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+P,K1_exp,constant,10min,merge_0.1s,30min,0.4414359814524156,timestamp,,1.1921310031163541,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.192"
+P,K7_1e-2_1e4,constant,10min,merge_0.1s,30min,0.5359447622710494,timestamp,,0.09981122850949053,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+P,K1_exp,constant,full,randomise_1s,none,0.791067739530402,timestamp,,1.1921310031163541,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.192"
+P,K7_1e-2_1e4,constant,full,randomise_1s,none,0.9385241360733643,timestamp,,0.09981122850949053,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+P,K1_exp,constant,10min,randomise_1s,30min,0.7593999130594802,timestamp,,1.1921310031163541,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.192"
+P,K7_1e-2_1e4,constant,10min,randomise_1s,30min,0.8307181260085288,timestamp,,0.09981122850949053,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+P,K1_exp,constant,10min,raw,0min,0.588457945782356,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,10min,raw,0min,0.8346482205016452,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+P,K1_exp,constant,10min,raw,5min,0.5927323459254805,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,10min,raw,5min,0.8361132009714858,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+P,K1_exp,constant,10min,raw,30min_cut1,0.5893415737470826,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,10min,raw,30min_cut1,0.8326010752867788,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+P,K1_exp,constant,10min,raw,30min_cut5,0.5998267773289102,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,10min,raw,30min_cut5,0.8389542316616904,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+P,K1_exp,constant,10min,raw,60min,0.5927323459254805,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,10min,raw,60min,0.836070399893144,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+P,K1_exp,constant,1h,raw,0min,0.5810290802939303,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,1h,raw,0min,0.8665604684938342,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+P,K1_exp,constant,1h,raw,5min,0.581029080291845,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,1h,raw,5min,0.8704574907524711,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+P,K1_exp,constant,1h,raw,30min_cut1,0.5821243244801168,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,1h,raw,30min_cut1,0.8694229524449999,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+P,K1_exp,constant,1h,raw,30min_cut5,0.5854322134260341,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,1h,raw,30min_cut5,0.859591796446695,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+P,K1_exp,constant,1h,raw,60min,0.581029080291845,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,1h,raw,60min,0.8704821806764349,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+P,K1_exp,constant,30min,raw,0min,0.575763120855117,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,30min,raw,0min,0.8454523206664857,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+P,K1_exp,constant,30min,raw,5min,0.5757630678112343,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,30min,raw,5min,0.8487893450381526,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+P,K1_exp,constant,30min,raw,30min_cut1,0.5777681958579337,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,30min,raw,30min_cut1,0.8455678454956983,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+P,K1_exp,constant,30min,raw,30min_cut5,0.5842491753508566,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,30min,raw,30min_cut5,0.8438253216675955,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+P,K1_exp,constant,30min,raw,60min,0.5757630678112343,buffer,,1.1921310031163541,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.192
+P,K7_1e-2_1e4,constant,30min,raw,60min,0.8517707981269316,buffer,,0.09981122850949053,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,full,raw,none,0.4776932800477386,kernel,1.9354023052559184,1.9354023052559184,False,False,False,kernel gap 1.935
+Tr,K2_free,constant,full,raw,none,0.7539231929968506,kernel,0.6036652639052267,0.6036652639052267,False,False,False,kernel gap 0.604
+Tr,K3_free,constant,full,raw,none,0.9115780105936355,kernel,0.2411586945351054,0.2411586945351054,False,False,False,kernel gap 0.241
+Tr,K5_1e-2_1e4,constant,full,raw,none,0.952725685749195,kernel,0.0908834801088767,0.0908834801088767,False,True,True,
+Tr,K7_1e-2_1e4,constant,full,raw,none,0.9502727037639375,kernel,0.0456020913236046,0.0456020913236046,True,True,True,
+Tr,K9_1e-2_1e4,constant,full,raw,none,0.9496483002825009,kernel,0.062073319510716374,0.062073319510716374,False,True,True,
+Tr,K11_1e-2_1e4,constant,full,raw,none,0.9489673703723709,kernel,0.04649400252153746,0.04649400252153746,True,True,True,
+Tr,K7_1e-3_1e4,constant,full,raw,none,0.9716581647697267,kernel,0.0,0.0,True,True,True,
+Tr,K7_1e-2_1e5,constant,full,raw,none,0.9498452701691891,kernel,0.061576325300557455,0.061576325300557455,False,True,True,
+Tr,K7_1e-3_1e5,constant,full,raw,none,0.9714451942166469,kernel,0.029722011151428473,0.029722011151428473,True,True,True,
+Tr,K1_exp,spline_30_archived,full,raw,none,0.41150770883348153,background,0.0012796118165623316,1.9354023052559184,False,False,False,kernel gap 1.935
+Tr,K7_1e-2_1e4,spline_30_archived,full,raw,none,0.8585877728778599,background,0.0012796118165623316,0.0456020913236046,True,True,True,
+Tr,K7_1e-2_1e4,spline_5_0,full,raw,none,0.763906776323671,background,0.2049680103253415,0.0456020913236046,False,False,False,background gap 0.205
+Tr,K7_1e-2_1e4,spline_5_0.01,full,raw,none,0.839325324438434,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_5_1,full,raw,none,0.8705485257914729,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_5_100,full,raw,none,0.8973408352278626,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_15_0,full,raw,none,0.8241376586295752,background,0.055157660148910104,0.0456020913236046,False,True,True,
+Tr,K1_exp,spline_15_0,full,raw,none,0.4095896176405896,background,0.055157660148910104,1.9354023052559184,False,False,False,kernel gap 1.935
+Tr,K7_1e-2_1e4,spline_15_0.01,full,raw,none,0.8634906777095692,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_15_1,full,raw,none,0.8873325164171884,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_15_100,full,raw,none,0.9163320481342371,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_30_0,full,raw,none,0.8579280425042963,background,0.0012796118165623316,0.0456020913236046,True,True,True,
+Tr,K1_exp,spline_30_0,full,raw,none,0.4115155047923841,background,0.0012796118165623316,1.9354023052559184,False,False,False,kernel gap 1.935
+Tr,K7_1e-2_1e4,spline_30_0.001,full,raw,none,0.8653880052625168,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_30_0.01,full,raw,none,0.8751687044699414,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_30_0.1,full,raw,none,0.8864474381614171,background,0.0,0.0456020913236046,True,True,True,
+Tr,K7_1e-2_1e4,spline_30_1,full,raw,none,0.8986376631560276,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_30_10,full,raw,none,0.9156564628829178,background,0.0014257577422884804,0.0456020913236046,True,True,True,
+Tr,K1_exp,spline_30_10,full,raw,none,0.44913261694872675,background,0.0014257577422884804,1.9354023052559184,False,False,False,kernel gap 1.935
+Tr,K7_1e-2_1e4,spline_30_100,full,raw,none,0.9209302428129074,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_60_0,full,raw,none,0.8696197105828798,background,0.0011847447108888076,0.0456020913236046,True,True,True,
+Tr,K1_exp,spline_60_0,full,raw,none,0.438068046255388,background,0.0011847447108888076,1.9354023052559184,False,False,False,kernel gap 1.935
+Tr,K7_1e-2_1e4,spline_60_0.01,full,raw,none,0.8861147157442837,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_60_1,full,raw,none,0.9151110801889728,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_60_100,full,raw,none,0.9235106163901525,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_120_0,full,raw,none,0.8817311168630066,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_120_0.01,full,raw,none,0.8983960558729411,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_120_1,full,raw,none,0.9217703184721058,background,,0.0456020913236046,False,False,False,background not assessed by (c)
+Tr,K7_1e-2_1e4,spline_120_100,full,raw,none,0.9253317421330398,background,0.0021642854887840013,0.0456020913236046,True,True,True,
+Tr,K11_1e-2_1e4,spline_120_100,full,raw,none,0.9256285018897541,background,0.0021642854887840013,0.04649400252153746,True,True,True,
+Tr,K11_1e-2_1e4,spline_30_0,full,raw,none,0.8557995681765511,background,0.0012796118165623316,0.04649400252153746,True,True,True,
+Tr,K11_1e-2_1e4,spline_5_0,full,raw,none,0.758286136001713,background,0.2049680103253415,0.04649400252153746,False,False,False,background gap 0.205
+Tr,K11_1e-2_1e4,spline_60_0,full,raw,none,0.8706416855616386,background,0.0011847447108888076,0.04649400252153746,True,True,True,
+Tr,K1_exp,constant,10min,raw,30min,0.398654661367924,window,0.042436380069798996,1.9354023052559184,False,False,False,kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,10min,raw,30min,0.7105863211861065,window,0.042436380069798996,0.0456020913236046,True,True,True,
+Tr,K11_1e-2_1e4,constant,10min,raw,30min,0.7212032669222204,window,0.042436380069798996,0.04649400252153746,True,True,True,
+Tr,K1_exp,constant,30min,raw,30min,0.37054451739566274,window,0.0,1.9354023052559184,False,False,False,kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,30min,raw,30min,0.8131940784740614,window,0.0,0.0456020913236046,True,True,True,
+Tr,K11_1e-2_1e4,constant,30min,raw,30min,0.8135825288426797,window,0.0,0.04649400252153746,True,True,True,
+Tr,K1_exp,constant,1h,raw,30min,0.35511144337391487,window,0.04051049543750851,1.9354023052559184,False,False,False,kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,1h,raw,30min,0.8505867014643415,window,0.04051049543750851,0.0456020913236046,True,True,True,
+Tr,K11_1e-2_1e4,constant,1h,raw,30min,0.8533619964185798,window,0.04051049543750851,0.04649400252153746,True,True,True,
+Tr,K1_exp,constant,full,merge_1ms,none,0.6326289945018708,timestamp,,1.9354023052559184,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.935"
+Tr,K7_1e-2_1e4,constant,full,merge_1ms,none,0.9383621215618132,timestamp,,0.0456020913236046,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+Tr,K1_exp,constant,10min,merge_1ms,30min,0.4598869160152919,timestamp,,1.9354023052559184,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.935"
+Tr,K7_1e-2_1e4,constant,10min,merge_1ms,30min,0.7187177438788457,timestamp,,0.0456020913236046,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+Tr,K1_exp,constant,full,merge_10ms,none,0.6798885681202066,timestamp,,1.9354023052559184,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.935"
+Tr,K7_1e-2_1e4,constant,full,merge_10ms,none,0.9258800299638212,timestamp,,0.0456020913236046,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+Tr,K1_exp,constant,10min,merge_10ms,30min,0.47891259579512235,timestamp,,1.9354023052559184,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.935"
+Tr,K7_1e-2_1e4,constant,10min,merge_10ms,30min,0.686606200620379,timestamp,,0.0456020913236046,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+Tr,K1_exp,constant,full,merge_0.1s,none,0.7714819431461043,timestamp,,1.9354023052559184,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.935"
+Tr,K7_1e-2_1e4,constant,full,merge_0.1s,none,0.9230958295945217,timestamp,,0.0456020913236046,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+Tr,K1_exp,constant,10min,merge_0.1s,30min,0.48040190289974216,timestamp,,1.9354023052559184,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.935"
+Tr,K7_1e-2_1e4,constant,10min,merge_0.1s,30min,0.6073070094814947,timestamp,,0.0456020913236046,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+Tr,K1_exp,constant,full,randomise_1s,none,0.7444811502168984,timestamp,,1.9354023052559184,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.935"
+Tr,K7_1e-2_1e4,constant,full,randomise_1s,none,0.9466401175410908,timestamp,,0.0456020913236046,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+Tr,K1_exp,constant,10min,randomise_1s,30min,0.6337229093191035,timestamp,,1.9354023052559184,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution; kernel gap 1.935"
+Tr,K7_1e-2_1e4,constant,10min,randomise_1s,30min,0.7540902498522101,timestamp,,0.0456020913236046,False,False,False,"timestamp transformed: event set differs, (c) undefined; kernel scales below the coarsened resolution"
+Tr,K1_exp,constant,10min,raw,0min,0.39516891197088866,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,10min,raw,0min,0.7437970807529732,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,10min,raw,5min,0.398654661367924,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,10min,raw,5min,0.7589962834402595,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,10min,raw,30min_cut1,0.39587808789072493,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,10min,raw,30min_cut1,0.7588494196946012,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,10min,raw,30min_cut5,0.41451879160633115,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,10min,raw,30min_cut5,0.7468406061314388,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,10min,raw,60min,0.39970425206577065,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,10min,raw,60min,0.7588942066353495,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,1h,raw,0min,0.3551113248906081,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,1h,raw,0min,0.844065223403483,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,1h,raw,5min,0.35511144337391487,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,1h,raw,5min,0.850050493301719,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,1h,raw,30min_cut1,0.37209529560525056,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,1h,raw,30min_cut1,0.84710064778056,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,1h,raw,30min_cut5,0.36157292198361424,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,1h,raw,30min_cut5,0.8382171221114071,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,1h,raw,60min,0.35511144337391487,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,1h,raw,60min,0.8504727623566882,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,30min,raw,0min,0.3668737523077251,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,30min,raw,0min,0.8042342692194322,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,30min,raw,5min,0.3657640487395526,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,30min,raw,5min,0.8177794099939839,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,30min,raw,30min_cut1,0.375896788667204,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,30min,raw,30min_cut1,0.8164606580897147,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,30min,raw,30min_cut5,0.3824977192034176,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,30min,raw,30min_cut5,0.797485633550266,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
+Tr,K1_exp,constant,30min,raw,60min,0.38073013885264717,buffer,,1.9354023052559184,False,False,False,boundary approximation (history-buffer or cut variant); kernel gap 1.935
+Tr,K7_1e-2_1e4,constant,30min,raw,60min,0.8189060935892811,buffer,,0.0456020913236046,False,False,False,boundary approximation (history-buffer or cut variant)
