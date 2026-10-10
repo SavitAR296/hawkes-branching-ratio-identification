@@ -35,7 +35,7 @@ python experiments/make_figures.py
 Revision analyses (about three hours of single-core computation, measured; every task resumes where it stopped):
 
 ```bash
-for t in timestamp history nested bivar sim adeq boot bootfix soecheck penalty heldout_grids cv_const heldout_windows cv_tight k11_tight; do python experiments/R_revision.py $t; done
+for t in timestamp history nested bivar sim adeq boot bootfix soecheck penalty heldout_grids cv_const heldout_windows k11_variants cv_tight k11_tight; do python experiments/R_revision.py $t; done
 python experiments/R_indirect.py calibrate && python experiments/R_indirect.py simulate && python experiments/R_indirect_summary.py && python experiments/R_indirect_matched.py
 python experiments/R_moderes.py && python experiments/R_bivar_resid.py && python experiments/R_pooled_vr.py && python experiments/R_tick_np.py main 100 && python experiments/R_t4.py && python experiments/R_defensible.py && CADM=10 python experiments/R_defensible.py
 python experiments/R_summaries.py && python experiments/R_summaries2.py && python experiments/R_summaries3.py && python experiments/R_summaries4.py
