@@ -1,20 +1,20 @@
 cff-version: 1.2.0
 message: "If you use this code or the archived results, please cite the manuscript below."
-title: "What Hawkes branching ratios measure in high-frequency markets: specification sensitivity, mode-resolved bounds and critical slowing down in a Euro-Bund case study"
+title: "What Hawkes branching ratios measure in high-frequency markets: specification sensitivity, mode-resolved bounds and critical slowing down in a Euro–Bund case study"
 type: software
 authors:
   - family-names: Xing
     given-names: Boyan
     affiliation: "Department of Mathematical Sciences, Faculty of Science and Technology, Beijing Normal-Hong Kong Baptist University"
     email: t330025089@mail.bnbu.edu.cn
-version: 1.2.0-revision
+version: 1.2.1-revision
 date-released: 2026-10-10
 license: MIT
 doi: 10.5281/zenodo.22774223
 repository-code: "https://github.com/SavitAR296/hawkes-branching-ratio-identification"
 preferred-citation:
   type: article
-  title: "What Hawkes branching ratios measure in high-frequency markets: specification sensitivity, mode-resolved bounds and critical slowing down in a Euro-Bund case study"
+  title: "What Hawkes branching ratios measure in high-frequency markets: specification sensitivity, mode-resolved bounds and critical slowing down in a Euro–Bund case study"
   authors:
     - family-names: Xing
       given-names: Boyan

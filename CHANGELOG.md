@@ -2,6 +2,25 @@
 
 All notable changes to this repository are documented in this file.
 
+## v1.2.1-revision (2026-10-10)
+
+Metadata and reproducibility-only patch over v1.2.0-revision. No script, CSV, JSON, or PDF changes; no numbers, figures or conclusions move.
+
+### Fixed
+
+- `SHA256SUMS.txt` previously listed its own hash, causing one `FAILED` line under `sha256sum -c`; regenerated to exclude itself (and `.gitattributes`/`.gitignore`, which git manages directly).
+- `requirements-revision.txt` listed `python==3.12.3`, which is not a PyPI package and made `pip install -r` / `uv pip install -r` fail; replaced with a comment `# Python 3.12.3 (interpreter version; not installable by pip)`. Added `.python-version` pinning 3.12.3.
+
+### Changed
+
+- `README.md`: added `python -m pip install -r requirements-revision.txt` and `sha256sum -c SHA256SUMS.txt` as the first two lines of the revision-analyses code block; listed the nine revision helper scripts explicitly in "What this repository contains"; expanded the `R_revision.py` task list to the full 16 tasks actually run.
+- `CITATION.cff`: version bumped to `1.2.1-revision`; title uses the en-dash form "Euro–Bund" to match the manuscript; `date-released` set to 2026-10-10.
+- `REPRODUCIBILITY.md`: Archive identifiers now record v1.2.0-revision DOI 10.5281/zenodo.23273209 and explain why it is superseded by this patch.
+
+### Removed
+
+- `figs.sha256`, a temporary verification file that was committed by mistake.
+
 ## v1.2.0-revision (2026-10-10)
 
 R1 revision archive for Chaos, Solitons & Fractals manuscript CHAOS-D-26-09420.

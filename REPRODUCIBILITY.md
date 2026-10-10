@@ -43,5 +43,6 @@ OpenAI ChatGPT (GPT-5.6 Sol; OpenAI, accessed September 2026) assisted with draf
 
 - v1.0.0-submission: commit `09ec2c8`, DOI 10.5281/zenodo.22774224.
 - v1.1.0-revision: DOI 10.5281/zenodo.23245408; scripts incomplete, superseded by v1.2.0-revision.
-- v1.2.0-revision: this release; version DOI resolves at the concept DOI below.
+- v1.2.0-revision: DOI 10.5281/zenodo.23273209; scripts and outputs identical to v1.2.1, but superseded because SHA256SUMS.txt listed its own hash (one `sha256sum -c` failure) and requirements-revision.txt contained an unpip-installable `python==3.12.3` line.
+- v1.2.1-revision: this release; metadata/checksum-only patch over v1.2.0 (no script/CSV/JSON/PDF changes).
 - concept DOI: 10.5281/zenodo.22774223.

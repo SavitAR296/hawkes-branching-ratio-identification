@@ -17,7 +17,8 @@ Submitted to *Chaos, Solitons & Fractals*; this version accompanies the revision
 - `data/` — the public Euro-Bund futures event snapshot (`bund.npz`) distributed with the research workspace (X-DataInitiative/tick-datasets; Bacry–Jaisson–Muzy data lineage).
 - `tables/` and `tables_csf/` — frozen CSV outputs used by every headline table.
 - `figures_csf/` — figures of the original submission.
-- `experiments/R_revision.py` — all analyses added in revision (tasks: `timestamp`, `history`, `nested`, `bivar`, `sim`, `adeq`, `boot`, `bootfix`, `soecheck`, `penalty`), resumable per session.
+- `experiments/R_revision.py` — core revision analyses (16 tasks: `timestamp`, `history`, `nested`, `bivar`, `sim`, `adeq`, `boot`, `bootfix`, `soecheck`, `penalty`, `heldout_grids`, `cv_const`, `heldout_windows`, `k11_variants`, `cv_tight`, `k11_tight`), resumable per session.
+- Revision-only helper scripts: `R_indirect.py`, `R_indirect_summary.py`, `R_indirect_matched.py` (exogenous benchmark), `R_moderes.py` (mode-resolved bounds), `R_tick_np.py` (nonparametric Wiener–Hopf), `R_t4.py` (window defensibility grid), `R_bivar_resid.py` (bivariate residual diagnostics), `R_pooled_vr.py` (pooled signed variance ratio), `R_defensible.py` (defensibility labels).
 - `experiments/R_summaries.py`, `R_summaries2.py`, `R_summaries3.py`, `R_summaries4.py` — deterministic summaries of the revision tables; `experiments/R_make_figures.py` — revision figures.
 - `tables_rev/` and `figures_rev/` — frozen revision outputs and vector figures.
 
@@ -35,6 +36,8 @@ python experiments/make_figures.py
 Revision analyses (about three hours of single-core computation, measured; every task resumes where it stopped):
 
 ```bash
+python -m pip install -r requirements-revision.txt   # under Python 3.12.3
+sha256sum -c SHA256SUMS.txt
 for t in timestamp history nested bivar sim adeq boot bootfix soecheck penalty heldout_grids cv_const heldout_windows k11_variants cv_tight k11_tight; do python experiments/R_revision.py $t; done
 python experiments/R_indirect.py calibrate && python experiments/R_indirect.py simulate && python experiments/R_indirect_summary.py && python experiments/R_indirect_matched.py
 python experiments/R_moderes.py && python experiments/R_bivar_resid.py && python experiments/R_pooled_vr.py && python experiments/R_tick_np.py main 100 && python experiments/R_t4.py && python experiments/R_defensible.py && CADM=10 python experiments/R_defensible.py
