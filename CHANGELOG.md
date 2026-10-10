@@ -9,13 +9,13 @@ R1 revision archive for Chaos, Solitons & Fractals manuscript CHAOS-D-26-09420.
 ### Added
 
 - Nine revision scripts under `experiments/`:
-  - `R_defensible.py` — defensibility labels over all 98 specifications (Table 11, Fig. 9).
-  - `R_t4.py` — window admissibility and grid comparison (local intervals in Table 11).
-  - `R_indirect.py`, `R_indirect_summary.py`, `R_indirect_matched.py` — calibrated exogenous log-OU benchmark (Table 9).
-  - `R_moderes.py` — mode-resolved bounds and Appendix D simulations (Table 10, Table D.15, Fig. 8, Section 5.11).
-  - `R_tick_np.py` — nonparametric Wiener-Hopf kernel via `tick==0.8.0.2` (Table 3).
-  - `R_bivar_resid.py` — bivariate residual diagnostics (bivariate rows in Table 6).
-  - `R_pooled_vr.py` — pooled signed variance ratio, with and without within-sample centring (Section 5.11 pooled VR-, Table 10 pooled row).
+  - `R_defensible.py` 鈥?defensibility labels over all 98 specifications (Table 11, Fig. 9).
+  - `R_t4.py` 鈥?window admissibility and grid comparison (local intervals in Table 11).
+  - `R_indirect.py`, `R_indirect_summary.py`, `R_indirect_matched.py` 鈥?calibrated exogenous log-OU benchmark (Table 9).
+  - `R_moderes.py` 鈥?mode-resolved bounds and Appendix D simulations (Table 10, Table D.15, Fig. 8, Section 5.11).
+  - `R_tick_np.py` 鈥?nonparametric Wiener-Hopf kernel via `tick==0.8.0.2` (Table 3).
+  - `R_bivar_resid.py` 鈥?bivariate residual diagnostics (bivariate rows in Table 6).
+  - `R_pooled_vr.py` 鈥?pooled signed variance ratio, with and without within-sample centring (Section 5.11 pooled VR-, Table 10 pooled row).
 - `tables_rev/R_defensible_labels.csv` and all frozen outputs of the nine new scripts.
 - Three revision figures: `figures_rev/R_fig_modes.pdf` (Fig. 6), `R_fig_moderes.pdf` (Fig. 8), `R_fig_scatter.pdf` (Fig. 9).
 - `requirements-revision.txt` now pins `tick==0.8.0.2`.
@@ -26,9 +26,13 @@ R1 revision archive for Chaos, Solitons & Fractals manuscript CHAOS-D-26-09420.
 - `README.md`, `REPRODUCIBILITY.md`, `CITATION.cff` updated to the revised manuscript title, contact email (xby040909@outlook.com), concept DOI 10.5281/zenodo.22774223, and v1.2.0-revision metadata.
 - `SHA256SUMS.txt` regenerated over the full file set.
 
+### Added
+
+- `.gitattributes` with `* -text` to disable all line-ending conversion; SHA256SUMS.txt regenerated over LF-normalized files.
+
 ### Not changed
 
-- `data/bund.npz` is byte-identical to the upstream tick-datasets snapshot (SHA-256 fa1d4679…bd8c), BSD-3-Clause.
+- `data/bund.npz` is byte-identical to the upstream tick-datasets snapshot (SHA-256 fa1d4679鈥d8c), BSD-3-Clause.
 - Random seed remains `20260914`; `LICENSE` (MIT) and `DATA_REDISTRIBUTION_NOTE.md` unchanged.
 - No force-push; `v1.0.0-submission` still points at `09ec2c8` and `v1.1.0-revision` is untouched.
 
