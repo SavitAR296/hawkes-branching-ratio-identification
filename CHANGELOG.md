@@ -2,6 +2,19 @@
 
 All notable changes to this repository are documented in this file.
 
+## v1.2.2-revision
+
+Adds one script and its output for the revised Section 5.11 and fixes two documentation errors. No existing script, CSV, JSON or PDF changes, and no number reported in v1.2.1 moves.
+
+### Added
+
+- `experiments/R_pooled_vr_long.py` and `tables_rev/R_pooled_vr_long.json`: the pooled signed variance ratio of `R_pooled_vr.py` at bin widths of 1 h, 2 h, 3.5 h, 7 h and one full session, with the finite-bin-width bound of Corollary 2 and the share of full-session signed variance carried by the three most trending sessions (Section 5.11). Same estimator, bootstrap and seed (20260914) as `R_pooled_vr.py`; the 1-h row reproduces the value already reported.
+
+### Fixed
+
+- README: the Table 9 headline read "Slow cross-excitation slows self-excitation"; it now states that slow cross-excitation exceeds slow self-excitation (slow cross-minus-self mass).
+- CHANGELOG: em dashes and an ellipsis had been saved in the wrong encoding (Windows code page); restored to UTF-8.
+
 ## v1.2.1-revision (2026-10-10)
 
 Metadata and reproducibility-only patch over v1.2.0-revision. No script, CSV, JSON, or PDF changes; no numbers, figures or conclusions move.
@@ -28,13 +41,13 @@ R1 revision archive for Chaos, Solitons & Fractals manuscript CHAOS-D-26-09420.
 ### Added
 
 - Nine revision scripts under `experiments/`:
-  - `R_defensible.py` 鈥?defensibility labels over all 98 specifications (Table 11, Fig. 9).
-  - `R_t4.py` 鈥?window admissibility and grid comparison (local intervals in Table 11).
-  - `R_indirect.py`, `R_indirect_summary.py`, `R_indirect_matched.py` 鈥?calibrated exogenous log-OU benchmark (Table 9).
-  - `R_moderes.py` 鈥?mode-resolved bounds and Appendix D simulations (Table 10, Table D.15, Fig. 8, Section 5.11).
-  - `R_tick_np.py` 鈥?nonparametric Wiener-Hopf kernel via `tick==0.8.0.2` (Table 3).
-  - `R_bivar_resid.py` 鈥?bivariate residual diagnostics (bivariate rows in Table 6).
-  - `R_pooled_vr.py` 鈥?pooled signed variance ratio, with and without within-sample centring (Section 5.11 pooled VR-, Table 10 pooled row).
+  - `R_defensible.py` — defensibility labels over all 98 specifications (Table 11, Fig. 9).
+  - `R_t4.py` — window admissibility and grid comparison (local intervals in Table 11).
+  - `R_indirect.py`, `R_indirect_summary.py`, `R_indirect_matched.py` — calibrated exogenous log-OU benchmark (Table 9).
+  - `R_moderes.py` — mode-resolved bounds and Appendix D simulations (Table 10, Table D.15, Fig. 8, Section 5.11).
+  - `R_tick_np.py` — nonparametric Wiener-Hopf kernel via `tick==0.8.0.2` (Table 3).
+  - `R_bivar_resid.py` — bivariate residual diagnostics (bivariate rows in Table 6).
+  - `R_pooled_vr.py` — pooled signed variance ratio, with and without within-sample centring (Section 5.11 pooled VR-, Table 10 pooled row).
 - `tables_rev/R_defensible_labels.csv` and all frozen outputs of the nine new scripts.
 - Three revision figures: `figures_rev/R_fig_modes.pdf` (Fig. 6), `R_fig_moderes.pdf` (Fig. 8), `R_fig_scatter.pdf` (Fig. 9).
 - `requirements-revision.txt` now pins `tick==0.8.0.2`.
@@ -54,7 +67,7 @@ R1 revision archive for Chaos, Solitons & Fractals manuscript CHAOS-D-26-09420.
 
 ### Not changed
 
-- `data/bund.npz` is byte-identical to the upstream tick-datasets snapshot (SHA-256 fa1d4679鈥d8c), BSD-3-Clause.
+- `data/bund.npz` is byte-identical to the upstream tick-datasets snapshot (SHA-256 fa1d4679…bd8c), BSD-3-Clause.
 - Random seed remains `20260914`; `LICENSE` (MIT) and `DATA_REDISTRIBUTION_NOTE.md` unchanged.
 - No force-push; `v1.0.0-submission` still points at `09ec2c8` and `v1.1.0-revision` is untouched.
 

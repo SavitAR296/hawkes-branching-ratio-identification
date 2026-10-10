@@ -18,7 +18,7 @@ Submitted to *Chaos, Solitons & Fractals*; this version accompanies the revision
 - `tables/` and `tables_csf/` — frozen CSV outputs used by every headline table.
 - `figures_csf/` — figures of the original submission.
 - `experiments/R_revision.py` — core revision analyses (16 tasks: `timestamp`, `history`, `nested`, `bivar`, `sim`, `adeq`, `boot`, `bootfix`, `soecheck`, `penalty`, `heldout_grids`, `cv_const`, `heldout_windows`, `k11_variants`, `cv_tight`, `k11_tight`), resumable per session.
-- Revision-only helper scripts: `R_indirect.py`, `R_indirect_summary.py`, `R_indirect_matched.py` (exogenous benchmark), `R_moderes.py` (mode-resolved bounds), `R_tick_np.py` (nonparametric Wiener–Hopf), `R_t4.py` (window defensibility grid), `R_bivar_resid.py` (bivariate residual diagnostics), `R_pooled_vr.py` (pooled signed variance ratio), `R_defensible.py` (defensibility labels).
+- Revision-only helper scripts: `R_indirect.py`, `R_indirect_summary.py`, `R_indirect_matched.py` (exogenous benchmark), `R_moderes.py` (mode-resolved bounds), `R_tick_np.py` (nonparametric Wiener–Hopf), `R_t4.py` (window defensibility grid), `R_bivar_resid.py` (bivariate residual diagnostics), `R_pooled_vr.py` (pooled signed variance ratio up to one hour), `R_pooled_vr_long.py` (the same ratio at 1 h to one full session), `R_defensible.py` (defensibility labels).
 - `experiments/R_summaries.py`, `R_summaries2.py`, `R_summaries3.py`, `R_summaries4.py` — deterministic summaries of the revision tables; `experiments/R_make_figures.py` — revision figures.
 - `tables_rev/` and `figures_rev/` — frozen revision outputs and vector figures.
 
@@ -40,7 +40,7 @@ python -m pip install -r requirements-revision.txt   # under Python 3.12.3
 sha256sum -c SHA256SUMS.txt
 for t in timestamp history nested bivar sim adeq boot bootfix soecheck penalty heldout_grids cv_const heldout_windows k11_variants cv_tight k11_tight; do python experiments/R_revision.py $t; done
 python experiments/R_indirect.py calibrate && python experiments/R_indirect.py simulate && python experiments/R_indirect_summary.py && python experiments/R_indirect_matched.py
-python experiments/R_moderes.py && python experiments/R_bivar_resid.py && python experiments/R_pooled_vr.py && python experiments/R_tick_np.py main 100 && python experiments/R_t4.py && python experiments/R_defensible.py && CADM=10 python experiments/R_defensible.py
+python experiments/R_moderes.py && python experiments/R_bivar_resid.py && python experiments/R_pooled_vr.py && python experiments/R_pooled_vr_long.py && python experiments/R_tick_np.py main 100 && python experiments/R_t4.py && python experiments/R_defensible.py && CADM=10 python experiments/R_defensible.py
 python experiments/R_summaries.py && python experiments/R_summaries2.py && python experiments/R_summaries3.py && python experiments/R_summaries4.py
 python experiments/R_make_figures.py csd bivariate stress penalty robustness moderes scatter modes
 ```
@@ -66,7 +66,7 @@ The robustness script is computationally heavier than figure generation; the fro
 - Bivariate SoE: n+ = 0.935, n− = −0.259 (negative in 20/20 sessions); cross-excitation carries all slow mass.
 - Refitted parametric bootstrap: every candidate lies outside its null band in every session; within-model SE(n) 0.004–0.010.
 - Nonparametric pooled kernel norm (mid-price, Table 3): 0.726 / 0.874 / 0.934 at 1 / 10 / 100 s support; up/down cross-kernel norm 0.59 [0.57, 0.62] at 1 s and 0.86 [0.82, 0.90] at 10 s.
-- Slow cross-excitation slows self-excitation (Table 9): 0.228 in the data; +0.235 [0.211, 0.259] after subtracting the log-OU control.
+- Slow cross-excitation exceeds slow self-excitation (Table 9, slow cross-minus-self mass): 0.228 in the data; +0.235 [0.211, 0.259] after subtracting the log-OU control.
 - Mode-resolved lower bounds on n+ (Table 10): 0.62 [0.59, 0.67] at W* = 60 s, 0.75 [0.62, 0.81] at 300 s, pooled 0.82 [0.71, 0.92].
 
 ## Randomness
