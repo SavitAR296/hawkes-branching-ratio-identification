@@ -25,6 +25,9 @@ R1 revision archive for Chaos, Solitons & Fractals manuscript CHAOS-D-26-09420.
 - Existing scripts (`R_revision.py`, `R_summaries*.py`, `R_make_figures.py`, `A_csf_additions.py`, `E1_bund_hawkes.py`, `make_figures.py`, `src/hawkes.py`) and frozen CSVs updated to the author's final revision outputs; no path or entry-point changes were required beyond those already present.
 - `README.md`, `REPRODUCIBILITY.md`, `CITATION.cff` updated to the revised manuscript title, contact email (xby040909@outlook.com), concept DOI 10.5281/zenodo.22774223, and v1.2.0-revision metadata.
 - `SHA256SUMS.txt` regenerated over the full file set.
+- Line-ending normalization: `.gitattributes` set to `* -text`; all existing files that appeared changed versus `v1.1.0-revision` (`src/hawkes.py`, `R_summaries*.py`, `tables/*.csv`, `tables_csf/*.csv`) are byte-identical after LF normalization — the apparent diff was purely CRLF/LF, not content.
+- `R_revision.py` adds six tasks for the operational defensibility rule (Section 3.1): `heldout_grids`, `cv_const`, `heldout_windows`, `cv_tight`, `k11_variants`, `k11_tight` (forward held-out log-likelihood, constant-baseline cross-validation, K=11 grid variants).
+- `R_make_figures.py` reads the new `R_cv_tight.csv` and `R_cv_constant.csv` for the penalty/λ scan; minor legend position/fontsize/ylim adjustments for Fig. 4.
 
 ### Added
 
